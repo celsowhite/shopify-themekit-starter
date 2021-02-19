@@ -1,0 +1,23 @@
+{% comment %}
+Social Share Component
+---
+Conditionally set the share class, url and text via variable tags (assign or capture) before including this snippet.
+{% endcomment %}
+
+{% if template contains 'product' %}
+  {% capture social_share_url %}{{ shop.url }}{{ product.url }}{% endcapture %}
+  {% capture social_share_text %}{{ product.title }}{% endcapture %}
+  {% capture social_share_description %}{{ product.title }} - {{ shop.url }}{% endcapture %}
+  {% capture social_share_media %}{{ product.featured_image | img_url: '800x' }}{% endcapture %}
+{% elsif template contains 'article' %}
+  {% capture social_share_url %}{{ shop.url }}{{ article.url }}{% endcapture %}
+  {% capture social_share_text %}{{ article.title }}{% endcapture %}
+  {% capture social_share_description %}{{ article.title }} - {{ shop.url }}{% endcapture %}
+  {% capture social_share_media %}{{ article.image | img_url: '800x' }}{% endcapture %}
+{% endif %}
+
+<ul class="social-icons {{ social_share_class }}">
+  <li><a class="social-share" data-share-type="fb" data-url="{{ social_share_url }}">{% include 'svg-icon-facebook' %}</a></li>
+  <li><a class="social-share" data-share-type="twitter" data-url="{{ social_share_url }}" data-text="{{ social_share_text }}">{% include 'svg-icon-twitter' %}</a></li>
+  <li><a class="social-share" data-share-type="pinterest" data-url="{{ social_share_url }}" data-description="{{ social_share_description }}" data-media="{{ social_share_media }}">{% include 'svg-icon-pinterest' %}</a></li>
+</ul>

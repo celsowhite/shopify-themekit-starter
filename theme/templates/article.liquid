@@ -1,0 +1,61 @@
+{% comment %} 
+Individual Blog Article Template 
+{% endcomment %}
+
+<article role="article">
+
+  <div class="container container--medium">
+
+    {% comment %} Header {% endcomment %}
+
+    <header class="page-header">
+      <div class="section-header">
+        <h1 class="section-header__title">{{ article.title }}</h1>
+      </div>
+      <div class="page-header__content">
+        <div class="article__date">{{ article.published_at | time_tag: format: 'month_day_year' }}</div>
+      </div>
+    </header>
+
+    {% comment %} Main Article Content {% endcomment %}
+
+    <main class="page-main">
+
+      {% comment %} Featured Image {% endcomment %}
+      <img class="article__featured-image lazyload" src="{{ article.image | img_url: '600x400', crop: 'center' }}" />
+
+      {% comment %} Content {% endcomment %}
+      <div class="article__content wysiwyg">
+        {{ article.content }}
+      </div>
+
+      {% comment %} Tags {% endcomment %}
+      <div class="article__tags wysiwyg">
+        {% if article.tags.size > 0 %}
+          <p class="article__tags-header">Tags:</p>
+          {% for tag in article.tags %}
+            <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a>
+          {% endfor %}
+        {% endif %}
+      </div>
+
+      {% comment %} Social Share {% endcomment %}
+      <div class="article__social-share social-share">
+        <p class="social-share__title">Share:</p>
+        {% include 'social-share' %}
+      </div>
+
+      {% comment %} Footer {% endcomment %}
+      <footer class="article__footer">
+        <a href="{{ blog.url }}" class="btn btn--primary">Back To {{ blog.title }}</a>
+      </footer>
+
+    </main>
+
+  </div>
+
+</article>
+
+{% comment %} Article Structured Data {% endcomment %}
+
+{% include 'json-ld-article' %}

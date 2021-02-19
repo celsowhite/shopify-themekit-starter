@@ -1,0 +1,38 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="canonical" href="{{ canonical_url }}">
+
+{%- if settings.favicon != blank -%}
+  {% comment %} Favicon {% endcomment %}
+  <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+  {% comment %} Apple Shortcut Icons {% endcomment %}
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ settings.favicon | img_url: '144x144' }}">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ settings.favicon | img_url: '114x114' }}">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ settings.favicon | img_url: '72x72' }}">
+  <link rel="apple-touch-icon-precomposed" href="{{ settings.favicon | img_url: '57x57' }}">
+  {% comment %} Microsoft Shortcut Icons {% endcomment %}
+  <meta name="msapplication-TileImage" content="{{ settings.favicon | img_url: '144x144' }}">
+{%- endif -%}
+
+{% comment %} SEO {% endcomment %}
+
+{%- capture seo_title -%}
+  {{ page_title }}
+  {%- if current_tags -%}
+    {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+  {%- endif -%}
+  {%- if current_page != 1 -%}
+    &ndash; {{ 'general.meta.page' | t: page: current_page }}
+  {%- endif -%}
+  {%- assign escaped_page_title = page_title | escape -%}
+  {%- unless escaped_page_title contains shop.name -%}
+    &ndash; {{ shop.name }}
+  {%- endunless -%}
+{%- endcapture -%}
+
+<title>{{ seo_title | strip }}</title>
+
+{%- if page_description -%}
+  <meta name="description" content="{{ page_description | escape }}">
+{%- endif -%}

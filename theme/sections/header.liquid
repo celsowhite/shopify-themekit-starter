@@ -1,0 +1,71 @@
+{% comment %} Main Header {% endcomment %}
+
+<div class="main-header" id="header-vue">
+  <div class="main-header__container container">
+    {% comment %} Left/Logo {% endcomment %}
+    <div class="main-header__left">
+      <a href="{{ shop.url }}" title="{{ shop.name }}">
+        <img src="{{ section.settings.logo | img_url: '500x' }}" class="main-header__logo" />
+      </a>
+    </div>
+
+    {% comment %} Right {% endcomment %}
+    <div class="main-header__right">
+      {% comment %} Links {% endcomment %}
+      <ul class="main-header__links">
+        {% for link in linklists[section.settings.main_menu].links %}
+          <li>
+            {% comment %} Top Level Link {% endcomment %}
+            <a href="{{ link.url }}" class="main-header-link {% if link.active %}main-header-link--is-active{% endif %}">{{ link.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+      {% comment %} Icons {% endcomment %}
+      <ul class="main-header__icons">
+        <li class="main-header__icon {% if template.directory == 'customers' %}active{% endif %}"><a href="{{ routes.account_url }}">{% render 'svg-icon-user' %}</a></li>
+        <li class="main-header__icon cart-icon" @click="toggleMiniCart">{% render 'svg-icon-cart' %} <span class="cart-icon__count" v-if="cartCount > 0" v-cloak>${ cartCount }</span></li>
+        <li class="main-header__menu-icon">
+          <div class="menu-icon">
+            <div class="menu-icon__line"></div>
+            <div class="menu-icon__line"></div>
+            <div class="menu-icon__line"></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% comment %} Mobile Nav Overlay {% endcomment %}
+
+{% render 'mobile-nav-overlay' %}
+
+{% comment %} Mini Cart {% endcomment %}
+
+{% unless template == 'cart' %}
+  {% render 'mini-cart' %}
+{% endunless %}
+
+{% schema %}
+  {
+    "name": "Header",
+    "class": "main-header-section",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Logo"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "link_list",
+        "id": "main_menu",
+        "label": "Main Menu",
+        "default": "main-menu"
+      }
+    ]
+  }
+{% endschema %}

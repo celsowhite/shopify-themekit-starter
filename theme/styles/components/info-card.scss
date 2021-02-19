@@ -1,0 +1,36 @@
+/*-------------------------------
+Info Card
+-------------------------------*/
+
+// Container
+
+.info-card {
+	background: transparent;
+	border-bottom: 2px solid var(--color-black);
+	margin-bottom: 20px;
+	padding: 0 0 20px;
+}
+
+.info-card p {
+	margin-bottom: 0;
+}
+
+.info-card:last-of-type {
+	border-bottom: 0;
+	padding: 0;
+}
+
+// Header
+
+.info-card__header {
+	display: flex;
+	justify-content: space-between;
+}
+
+// Footer
+
+.info-card__footer {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}

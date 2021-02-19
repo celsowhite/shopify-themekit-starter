@@ -1,0 +1,96 @@
+{% comment %} Top {% endcomment %}
+
+<div class="pdp-top" id="main-vue">
+
+  <div class="container pdp-top__container">
+
+    {% comment %} PDP Image Slider {% endcomment %}
+
+    <div class="pdp-top__slider">
+      {% render 'pdp-slider' %}
+    </div>
+
+    {% comment %} Product Details {% endcomment %}
+
+    <div class="pdp-details">
+      <add-to-cart inline-template>
+        <div>
+          {% comment %} Header {% endcomment %}
+          <header class="pdp-details-header">
+            <h2 class="pdp-details-header__title">{{ product.title }}</h2>
+            <p class="pdp-details-header__price">{{ product.price | money }}</p>
+          </header>
+
+          {% comment %} Description {% endcomment %}
+          <p class="pdp-details__description">{{ product.content }}</p>
+
+          {% comment %} Variant Options {% endcomment %}
+          <div class="pdp-options" v-if="productHasVariants">
+            <div class="pdp-option" v-for="option in options">
+              <p class="pdp-option__title">${ option.name }:</p>
+              <div class="select-dropdown">
+                <div class="select-dropdown__header">
+                  <span class="select-dropdown__title">${ selectedOptions[option.name] }</span>
+                  <span class="select-dropdown__icon">{% render 'svg-icon-arrow-down' %}</span>
+                </div>
+                <ul class="select-dropdown__list">
+                  <li
+                  v-for="value in option.values"
+                  class="pdp-option-item select-dropdown__list-item category-filter"
+                  :data-category="value"
+                  :class="{ 'select-dropdown__list-item--is-active': value === selectedOptions[option.name] }"
+                  @click="setOptionValue(option.name, value)">
+                  ${ value }</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          {% comment %} Footer {% endcomment %}
+          <div 
+          v-if="selectedVariant"
+          class="add-to-cart-footer">
+            {% comment %} Quantity {% endcomment %}
+            <div class="add-to-cart-footer__quantity">
+              <div class="quantity">
+                <div class="quantity__button quantity__button--minus" @click="decrementQuantity()">-</div>
+                <input type="number" min="1" class="quantity__input" name="quantity" v-model.number="quantity" @change="quantity = Math.max(Math.round(quantity), 1)" />
+                <div class="quantity__button quantity__button--plus" @click="incrementQuantity()">+</div>
+              </div>
+            </div>
+
+            {% comment %} Add To Cart {% endcomment %}
+            <div class="add-to-cart-footer__button">
+              <a 
+              class="btn btn--primary btn--full-width" 
+              :class="{'btn--disabled': selectedVariant && !selectedVariant.available}"
+              @click="addProductToCart()">
+                {% comment %} Dynamic add to cart button text if the selected variant is in stock. {% endcomment %}
+                <template v-if="selectedVariant.available">
+                  <span v-if="addToCartStatus === 'idle'">Add To Cart</span>
+                  <span v-else-if="addToCartStatus === 'loading'">Adding ...</span>
+                  <span v-else-if="addToCartStatus === 'done'">Added</span>
+                </template>
+                {% comment %} Sold Out button text {% endcomment %}
+                <template v-else>
+                  <span>Sold Out</span>
+                </template>
+              </a>
+              <div class="add-to-cart__feedback">${ feedbackMessage }</div>
+            </div>
+          </div>
+        </div>
+      </add-to-cart>
+    </div>
+    
+  </div>
+
+</div>
+
+{% schema %}
+  {
+    "name": "Product",
+    "settings": [
+    ]
+  }
+{% endschema %}

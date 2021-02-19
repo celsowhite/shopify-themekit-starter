@@ -1,0 +1,7 @@
+{% comment %} Search Form {% endcomment %}
+
+<form action="/search" method="get" class="search-form">
+  <input type="hidden" name="type" value="product">
+  <input class="search-form__input" type="search" name="q" value="{{search.terms  | escape}}" placeholder="{{ settings.search_input_placeholder }}" />
+  <button class="search-form__submit btn btn--primary" type="submit">{{ settings.search_button_label }}</button>
+</form>

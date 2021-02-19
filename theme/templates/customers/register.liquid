@@ -1,0 +1,90 @@
+{% comment %} Main {% endcomment %}
+
+<main class="page-main">
+  <div class="panel">
+    <div class="container container--small">
+      <div class="content-block">
+        <header class="content-block-header content-block-header--center">
+          <h1 class="h2 content-block-header__title">Create An Account</h1>
+        </header>
+
+        {% comment %}
+          Create customer form.
+        {% endcomment %}
+
+        {% form 'create_customer' %}
+
+          {% comment %} Form Errors {% endcomment %}
+
+          {% if form.errors %}
+            <div class="notification-banner notification-banner--invalid wysiwyg">
+              {% for field in form.errors %}
+                {% if field == 'form' %}
+                  <p>{{ form.errors.messages[field] }}</p>
+                {% else %}
+                  <p>{{ form.errors.translated_fields[field] }} - {{ form.errors.messages[field] }}</p>
+                {% endif %}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          {% comment %} Form Fields {% endcomment %}
+
+          <div class="form__group">
+            <label for="first_name">First Name*</label>
+            <input 
+            required
+            type="text"
+            name="customer[first_name]"
+            id="first_name"
+            autofocus
+            />
+          </div>
+
+          <div class="form__group">
+            <label for="last_name">Last Name*</label>
+            <input 
+            required
+            type="text"
+            name="customer[last_name]"
+            id="last_name"
+            />
+          </div>
+
+          <div class="form__group">
+            <label for="customer_email">Email*</label>
+            <input 
+            required 
+            type="email" 
+            value="" 
+            name="customer[email]" 
+            id="customer_email" 
+            class="{% if form.errors contains 'email' %}error{% endif %}"
+            spellcheck="false"
+            autocomplete="off"
+            autocapitalize="off"
+            />
+          </div>
+
+          <div class="form__group">
+            <label for="password">Password*</label>
+            <input 
+            required
+            type="password"
+            name="customer[password]"
+            id="password"
+            class="{% if form.errors contains 'password' %}error{% endif %}"
+            />
+          </div>
+
+          <div class="form__group">
+            <button type="submit" class="btn btn--primary btn--full-width">Register</button>
+          </div>
+
+          <p class="wysiwyg text-align--center">Returning Customer? <a class="text-color--orange" href="{{ routes.account_login_url }}">Sign In</a></p>
+          
+        {% endform %}
+      </div>
+    </div>
+  </div>
+</main>

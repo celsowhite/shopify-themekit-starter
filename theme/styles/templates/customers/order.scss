@@ -1,0 +1,55 @@
+/*-------------------------------
+Cart Item
+-------------------------------*/
+
+.order-cart-item {
+  display: flex;
+}
+
+.order-cart-item--with-border {
+  border-bottom: 2px solid var(--color-black);
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+
+// Image
+
+.order-cart-item__image {
+  flex: 0 0 100px;
+}
+
+.order-cart-item__image img {
+  width: 100%;
+  display: block;
+}
+
+// Details
+
+.order-cart-item__details {
+  padding: 0 10px;
+  flex: 1;
+}
+
+.order-cart-item__details p {
+  margin-bottom: 5px;
+}
+
+/*-------------------------------
+Calculations
+-------------------------------*/
+
+// Container
+
+.order-calculation__container {
+  border-bottom: 1px solid var(--color-black);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+// Line Item
+
+.order-calculation__line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,54 @@
+/*-------------------------------
+Social
+-------------------------------*/
+
+ul.social-icons {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+ul.social-icons li {
+  margin: 0px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+ul.social-icons svg {
+  width: 15px;
+  height: auto;
+  vertical-align: middle;
+  fill: var(--color-black);
+
+  @media all and (min-width: 768px) {
+    width: 20px;
+  }
+}
+
+// Center
+
+ul.social-icons--center {
+  justify-content: center;
+}
+
+// Flush Left
+
+ul.social-icons--flush-left li:first-child {
+  margin: 0 5px 0 0;
+}
+
+// Flush Right
+
+ul.social-icons--flush-right {
+  justify-content: flex-end;
+}
+
+ul.social-icons--flush-right li:last-child {
+  margin: 0 0 0 5px;
+}

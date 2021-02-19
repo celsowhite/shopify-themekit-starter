@@ -1,0 +1,15 @@
+{% comment %}
+Cart Page
+---
+Parts of the cart are dynamically rendered using Vue and the global Vuex store.
+{% endcomment %}
+
+{% comment %} Header {% endcomment %}
+
+<div id="cart-vue">
+  <div class="panel">
+    <div class="container container--small">
+      {% render 'cart' %}
+    </div>
+  </div>
+</div>

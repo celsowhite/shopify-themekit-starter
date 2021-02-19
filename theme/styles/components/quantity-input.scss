@@ -1,0 +1,53 @@
+/*-------------------------------
+Quantity Input
+-------------------------------*/
+
+.quantity {
+  display: flex;
+  justify-content: space-between;
+  max-width: 90px;
+  font-size: 12px;
+  line-height: 17px;
+  height: 25px;
+  width: 100%;
+  border: 1px solid;
+}
+
+// +/- buttons
+
+.quantity__button {
+  cursor: pointer;
+  flex: 0 0 30px;
+  display: flex;
+  align-items: center;
+}
+
+.quantity__button--minus {
+  justify-content: flex-start;
+  padding-left: 10px;
+}
+
+.quantity__button--plus {
+  justify-content: flex-end;
+  padding-right: 10px;
+}
+
+// Number Input
+
+.quantity__input {
+  -webkit-appearance: none;
+  border: 0;
+  text-align: center;
+  padding: 0;
+  background: transparent;
+  color: inherit;
+  width: 20px;
+  font-size: 12px;
+  line-height: 12px;
+}
+
+.quantity__input::-webkit-inner-spin-button,
+.quantity__input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

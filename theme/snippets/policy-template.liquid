@@ -1,0 +1,18 @@
+{% comment %} Policy Template {% endcomment %}
+
+{% assign policy_name = handle | replace: '-', '_' %}
+{% assign policy = shop[policy_name] %}
+
+<div class="panel">
+  <div class="container container--medium">
+    {% comment %} Header {% endcomment %}
+    <div class="page-header">
+      <h1 class="page-header__title">{{ policy.title }}</h1>
+    </div>
+
+    {% comment %} Main {% endcomment %}
+    <div class="page-main wysiwyg">
+      {{ policy.body }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<div class="mobile-nav-overlay">
+  <div class="mobile-nav-overlay__wrapper">
+    <div class="container">
+      {% comment %} Menu {% endcomment %}
+      <ul class="mobile-nav-menu">
+        {% comment %} Primary Level {% endcomment %}
+        {% for link in linklists[section.settings.main_menu].links %}
+          <li class="mobile-nav-menu__item" {% if link.levels > 0 %}mobile-nav__menu-item--with-children{% endif %}>
+            <a href="{{ link.url }}">{{ link.title }}</a> {% if link.levels > 0 %}<span class="mobile-nav-icon">+</span>{% endif %}
+          </li>     
+        {% endfor %}
+        <li class="mobile-nav-menu__item">
+          <a href="{{ routes.account_url }}">{% if customer %}Account{% else %}Login{% endif %}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

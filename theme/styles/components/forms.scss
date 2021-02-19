@@ -1,0 +1,244 @@
+form {
+  margin: 0;
+}
+
+a,
+area,
+button,
+[role='button'],
+input,
+label,
+select,
+summary,
+textarea {
+  touch-action: manipulation;
+}
+
+input,
+textarea,
+select {
+  font-size: inherit;
+  max-width: 100%;
+  border: 1px solid #000;
+  border-radius: 0;
+
+  &[disabled] {
+    cursor: default;
+  }
+}
+
+button,
+input[type='submit'],
+label[for] {
+  cursor: pointer;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+/*-------------------------------
+Structure
+-------------------------------*/
+
+.form_container {
+  margin-bottom: 30px;
+}
+
+.form__group {
+  margin-bottom: 20px;
+}
+
+/*-------------------------------
+General Inputs
+-------------------------------*/
+
+.form__group {
+  input[type='text'],
+  input[type='email'],
+  input[type='password'],
+  input[type='tel'],
+  textarea,
+  select {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid black;
+    display: block;
+    border-radius: 0;
+    padding: 0 0 5px;
+    width: 100%;
+    outline: none;
+
+    &::placeholder {
+      color: black;
+    }
+    // Required font size for inputs to not zoom on mobile devices.
+    @media all and (max-width: 568px) {
+      font-size: 16px;
+    }
+  }
+}
+
+/*-------------------------------
+Helpers
+-------------------------------*/
+
+// Hide
+
+.form__input--is-hidden {
+  display: none;
+}
+
+/*-------------------------------
+Custom Select
+---
+No default appearance but add a custom arrow symbol.
+See easydropdown-select.scss for a fully custom select solution.
+-------------------------------*/
+
+.form__group select {
+  position: relative;
+  width: 100%;
+  appearance: none;
+  background: url('https://cdn.shopify.com/s/files/1/0245/0335/3378/files/icon-down-arrow.png?6046')
+    no-repeat;
+  background-size: 12px;
+  background-position: 98% center;
+  background-repeat: no-repeat;
+}
+
+/*-------------------------------
+Radios
+-------------------------------*/
+
+// Structure
+
+.form__radio-group {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+// Individual Radio
+
+.form__radio {
+  margin-right: 15px;
+}
+
+.form__radio-input {
+  margin-right: 5px;
+}
+
+/*-------------------------------
+Checkbox
+-------------------------------*/
+
+// Hidden Checkbox
+
+input[type='checkbox'] {
+  display: none;
+}
+
+// Label
+
+input[type='checkbox'] + label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+// Styled Checkbox
+
+input[type='checkbox'] + label:before {
+  content: '';
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background: var(--color-blue);
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+input[type='checkbox'] + label:after {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background: var(--color-white);
+  border-radius: 50%;
+  position: absolute;
+  left: 6px;
+  top: 9px;
+  opacity: 0;
+}
+
+input[type='checkbox']:checked + label:after {
+  opacity: 1;
+}
+
+/*-------------------------------
+Labels
+-------------------------------*/
+
+.form__group label {
+  display: block;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+
+  @media all and (max-width: 568px) {
+    font-size: 12px;
+    line-height: 20px;
+  }
+}
+
+// Header
+
+.label__header {
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    margin: 0 0 10px;
+  }
+}
+
+/*-------------------------------
+Feedback
+-------------------------------*/
+
+.form__feedback-message {
+  margin: 20px 0;
+  font-style: italic;
+}
+
+.form__feedback-message p.error {
+  color: red;
+}
+
+/*-------------------------------
+Captcha Challenge
+-------------------------------*/
+
+.shopify-challenge__container {
+  padding: 50px 0;
+}
+
+/*-------------------------------
+Submit Footer
+If have text next to form submit button
+-------------------------------*/
+
+.form__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.form__footer p {
+  margin: 0;
+}

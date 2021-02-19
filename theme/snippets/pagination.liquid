@@ -1,0 +1,26 @@
+<div class="pagination">
+  {% comment %} Previous {% endcomment %}
+  {% if paginate.previous.is_link %}
+    <a href="{{ paginate.previous.url }}" class="pagination__arrow pagination__arrow--left">
+      {% render 'icon-arrow-left' %}
+    </a>
+  {% endif %}
+
+  {% comment %} Pages {% endcomment %}
+  <ul class="pagination__pages">
+    {% for part in paginate.parts %}
+      {% if part.is_link %}
+        <li class="pagination__page"><a href="{{ part.url }}">{{ forloop.index }}</a></li>
+      {% else %}
+        <li class="pagination__page active">{{ forloop.index }}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+
+  {% comment %} Next {% endcomment %}
+  {% if paginate.next.is_link %}
+    <a href="{{ paginate.next.url }}" class="pagination__arrow pagination__arrow--right"> 
+      {% render 'icon-arrow-right' %}
+    </a>
+  {% endif %}
+</div>

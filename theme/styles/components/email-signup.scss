@@ -1,0 +1,66 @@
+/*-------------------------------
+Structure
+-------------------------------*/
+
+.email-signup {
+  position: relative;
+  width: 100%;
+}
+
+.email-signup__form {
+  display: flex;
+
+  @media all and (max-width: 768px) {
+    flex-flow: row wrap;
+  }
+}
+
+/*-------------------------------
+Input
+-------------------------------*/
+
+.email-signup__input {
+  color: black;
+  border: 1px solid var(--color-white);
+  color: var(--color-white);
+  outline: 0;
+  background: transparent;
+  padding: 10px 20px;
+  width: 70%;
+  margin: 0 10px 0 0;
+
+  &::placeholder {
+    color: var(--color-white);
+  }
+
+  @media all and (max-width: 768px) {
+    font-size: 16px;
+    width: 100%;
+    margin: 0 0 10px 0;
+    text-align: center;
+  }
+}
+
+/*-------------------------------
+Submit
+-------------------------------*/
+
+.email-signup__submit {
+  width: 30%;
+
+  @media all and (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+/*-------------------------------
+Responses
+-------------------------------*/
+
+.email-singup__response {
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  font-size: 12px;
+  width: 100%;
+}

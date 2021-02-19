@@ -1,0 +1,20 @@
+{% comment %}
+Global JS
+---
+Set liquid variables that should be accesible via js scripts.
+{% endcomment %}
+
+<script>
+  // Theme
+  window.theme = {};
+  // Shopify Domain
+  theme.shopifyDomain = "{{ shop.permanent_domain }}";
+  // Shopify URL
+  theme.shopifySecureUrl = "{{ shop.secure_url }}";
+  // Customer
+  theme.customer = {% if customer %}true{% else %}false{% endif %};
+  // Customer ID
+  theme.customerId = "{{ customer.id }}";
+  // Customer Email
+  theme.customerEmail = "{{ customer.email }}";
+</script>

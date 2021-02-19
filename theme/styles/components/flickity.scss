@@ -1,0 +1,123 @@
+/*-------------------------------
+Generic Flickity Styling
+---
+Can be overwritten at a template/section level.
+-------------------------------*/
+
+.flickity-enabled {
+  position: relative;
+}
+
+.flickity-enabled:focus {
+  outline: none;
+}
+
+.flickity-viewport {
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+
+.flickity-slider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+/* draggable */
+
+.flickity-enabled.is-draggable {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.flickity-enabled.is-draggable .flickity-viewport {
+  cursor: move;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+/*-------------------------------
+Dots
+-------------------------------*/
+
+.flickity-page-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.is-single-slide .flickity-page-dots {
+  display: none;
+}
+
+.flickity-page-dots .dot {
+  background: transparent;
+  border: 1px solid var(--color-black);
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.flickity-page-dots .dot.is-selected {
+  background: var(--color-black);
+}
+
+/*-------------------------------
+Flickity Fade
+-------------------------------*/
+
+.flickity-enabled.is-fade .flickity-slider > * {
+  pointer-events: none;
+  z-index: 0;
+}
+
+.flickity-enabled.is-fade .flickity-slider > .is-selected {
+  pointer-events: auto;
+  z-index: 1;
+}
+
+/*-------------------------------
+Arrows
+-------------------------------*/
+
+.flickity__arrow {
+  all: unset;
+  text-decoration: none;
+  display: block;
+  width: 30px;
+  height: 30px;
+  margin: -15px 0 0;
+  position: absolute;
+  top: 50%;
+  z-index: var(--z-index-priority-content);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+// Prev
+
+.flickity__arrow--prev {
+  left: 00px;
+}
+
+// Next
+
+.flickity__arrow--next {
+  right: 00px;
+  text-align: right;
+}

@@ -1,0 +1,26 @@
+{% if section.settings.show_section %}
+  <div class="top-messaging">
+    <div class="container">
+      {{ section.settings.content }}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Top Messaging",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_section",
+        "label": "Show",
+        "default": true
+      },
+      {
+        "id": "content",
+        "type": "richtext",
+        "label": "Content"
+      }
+    ]
+  }
+{% endschema %}

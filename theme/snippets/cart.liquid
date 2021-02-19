@@ -1,0 +1,83 @@
+{% comment %}
+Cart component used in the mini cart and cart template.
+Parts of this component are dynamically rendered using Vue and the global Vuex store.
+{% endcomment %}
+
+<form action="/cart" method="post" class="cart">
+
+  {% comment %} Header {% endcomment %}
+
+  <header class="cart-header">
+    <h4 class="cart-header__title">Your Cart (${ cartCount })</h4>
+    {% unless template == 'cart' %}
+      <div class="cart-header__close" @click="toggleMiniCart">{% render 'svg-icon-close' %}</div>
+    {% endunless %}
+  </header>
+
+  {% comment %} Cart Items {% endcomment %}
+
+  <div class="cart-items">
+    <div class="wysiwyg" v-if="$store.state.cart.cartItems.length === 0">{{ settings.cart_empty_message_text }}</div>
+    <template v-for="(item) in $store.state.cart.cartItems">
+      <cart-item inline-template :item="item" :key="item.key">
+        <div 
+        :class="{'cart-item--is-loading': loading}"
+        class="cart-item">
+          <a class="cart-item__image" :href="productUrl">
+            <img :src="resizeShopifyImageUrl(item.image, '200x200_crop_center')" />
+          </a>
+          <div class="cart-item__details">
+            <div class="cart-item__header">
+              <p class="cart-item__title"><a :href="productUrl">${ item.title }</a></p>
+              <p class="cart-item__excerpt" v-if="isSubscriptionProduct">Delivered every ${ item.properties.shipping_interval_frequency } ${ item.properties.shipping_interval_unit_type }</p>
+            </div>
+            <div class="quantity cart-item__quantity">
+              <div class="quantity__button quantity__button--minus" @click="changeQuantity(quantity - 1)">-</div>
+              <input type="number" min="1" class="quantity__input" name="quantity" v-model.number="quantity" @change="changeQuantity(quantity)" />
+              <div class="quantity__button quantity__button--plus" @click="changeQuantity(quantity + 1)">+</div>
+            </div>
+            <div class="cart-item__feedback">${ feedbackMessage }</div>
+          </div>
+          <div class="cart-item__right">
+            <div class="cart-item__price-container">
+              <span class="cart-item__price">${ formatMoney(item.price * item.quantity) }</span>
+              <span class="loading-icon cart-item__loading-icon"></span>
+            </div>
+            <span @click="removeCartItem(item.key)" class="cart-item__close">Remove</span>
+          </div>
+        </div>
+      </cart-item>
+    </template>
+  </div>
+
+  <div class="cart-footer">
+    {% comment %} Calculations {% endcomment %}
+    <div class="cart-calculations">
+      <div class="cart-calculations__line">
+        <p>Shipping</p>
+        <p>Free</p>
+      </div>
+      <div class="cart-calculations__line">
+        <p>Subtotal</p>
+        <p>${ formatMoney(cartSubtotal) }</p>
+      </div>
+      <div class="cart-calculations__line">
+        <p>Total</p>
+        <p>${ formatMoney(cartSubtotal) }</p>
+      </div>
+    </div>
+
+    {% comment %} Footer {% endcomment %}
+    <p><a 
+    class="btn btn--primary btn--full-width"
+    :href="checkoutUrl">
+    Checkout</a></p>
+
+    {% comment %} Message {% endcomment %}
+    {% if settings.cart_message_text != blank %}
+      <div class="cart-message">
+        <p class="cart-message__text">{{ settings.cart_message_text }}</p>
+      </div>
+    {% endif %}
+  </div>
+</form>

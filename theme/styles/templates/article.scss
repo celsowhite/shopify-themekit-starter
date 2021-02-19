@@ -1,0 +1,40 @@
+/*-------------------------------
+Featured Image
+-------------------------------*/
+
+.article__featured-image {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/*-------------------------------
+Content
+-------------------------------*/
+
+.article__content {
+  margin-bottom: 20px;
+}
+
+// Tags
+
+.article__tags {
+  display: flex;
+}
+
+.article__tags a {
+  margin-right: 10px;
+}
+
+.article__tags-header {
+  margin: 0 20px 20px 0;
+}
+
+/*-------------------------------
+Footer
+-------------------------------*/
+
+.article__footer {
+  padding: 40px 0 0;
+  text-align: center;
+}

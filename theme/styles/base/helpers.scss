@@ -1,0 +1,47 @@
+/*-------------------------------
+Colors
+-------------------------------*/
+
+// Text
+
+// Background
+
+/*-------------------------------
+Alignment
+-------------------------------*/
+
+.text-align--center {
+  text-align: center;
+}
+
+.text-align--left {
+  text-align: left;
+}
+
+.text-align--right {
+  text-align: right;
+}
+
+/*-------------------------------
+Visibility
+-------------------------------*/
+
+// Tablet
+
+.tablet--hide {
+  @media all and (max-width: 768px) {
+    display: none;
+  }
+}
+
+.tablet--show {
+  display: none;
+
+  @media all and (max-width: 768px) {
+    display: block;
+  }
+}
+
+.hide {
+  display: none;
+}

@@ -1,0 +1,15 @@
+{% comment %} Default Page Template {% endcomment %}
+
+<div class="panel">
+  <div class="container container--medium">
+    {% comment %} Header {% endcomment %}
+    <div class="page-header">
+      <h1 class="page-header__title">{{ page.title }}</h1>
+    </div>
+
+    {% comment %} Main {% endcomment %}
+    <div class="page-main wysiwyg">
+      {{ page.content }}
+    </div>
+  </div>
+</div>

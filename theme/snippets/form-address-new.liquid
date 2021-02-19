@@ -1,0 +1,138 @@
+{% comment %}
+New Address Form
+---
+Must follow the markup structure detailed here https://www.npmjs.com/package/@shopify/theme-addresses
+{% endcomment %}
+
+<div data-address-form class="hide">
+  {% form 'customer_address', customer.new_address %}
+    {% comment %} Address fields {% endcomment %}
+    
+    <div data-address-fields>
+
+      {% comment %} First Name {% endcomment %}
+      <div class="form__group">
+        <label for="AddressFirstNameNew">First Name</label>
+        <input 
+          type="text"
+          name="address[first_name]"
+          id="AddressFirstNameNew"
+          value="{{ form.first_name }}"
+          autocapitalize="words"
+        />
+      </div>
+
+      {% comment %} Last Name {% endcomment %}
+      <div class="form__group">
+        <label for="AddressLastNameNew">Last Name</label>
+        <input 
+          type="text"
+          name="address[last_name]"
+          id="AddressLastNameNew"
+          value="{{ form.last_name }}"
+        />
+      </div>
+
+      {% comment %} Company {% endcomment %}
+      <div class="form__group">
+        <label for="AddressCompanyNew">Company</label>
+        <input 
+          type="text"
+          name="address[company]"
+          id="AddressCompanyNew"
+          value="{{ form.company }}"
+        />
+      </div>
+      
+      {% comment %} Address 1 {% endcomment %}
+      <div class="form__group">
+        <label for="AddressAddress1New">Address 1</label>
+        <input 
+          type="text"
+          name="address[address1]"
+          id="AddressAddress1New"
+          value="{{ form.address1 }}"
+        />
+      </div>
+
+      {% comment %} Address 2 {% endcomment %}
+      <div class="form__group">
+        <label for="AddressAddress2New">Address 2</label>
+        <input 
+          type="text"
+          name="address[address2]"
+          id="AddressAddress2New"
+          value="{{ form.address2 }}"
+        />
+      </div>
+
+      {% comment %} City {% endcomment %}
+      <div class="form__group">
+        <label for="AddressCityNew">City</label>
+        <input 
+          type="text"
+          name="address[city]"
+          id="AddressCityNew"
+          value="{{ form.city }}"
+        />
+      </div>
+
+      {% comment %} Country {% endcomment %}
+      <div class="form__group">
+        <label for="AddressCountryNew">Country</label>
+        <select
+          name="address[country]"
+          id="AddressCountryNew"
+          data-default="{{ form.country }}">
+        </select>
+      </div>
+      
+      {% comment %} Province {% endcomment %}
+      <div class="form__group">
+        <label for="AddressProvinceNew">Province</label>
+        <select
+          name="address[province]"
+          id="AddressProvinceNew"
+          data-default="{{ form.province }}">
+        </select>
+      </div>
+
+      {% comment %} Postal {% endcomment %}
+      <div class="form__group">
+        <label for="AddressZipNew">Postal/Zip Code</label>
+        <input 
+          type="text"
+          name="address[zip]"
+          id="AddressZipNew"
+          value="{{ form.zip }}"
+        />
+      </div>
+
+      {% comment %} Phone {% endcomment %}
+      <div class="form__group">
+        <label for="AddressPhoneNew">Phone</label>
+        <input 
+          type="tel"
+          name="address[phone]"
+          id="AddressPhoneNew"
+          value="{{ form.phone }}"
+          pattern="[0-9\-]*"
+        />
+      </div>
+    </div>
+
+    {% comment %} Set As Default - Checkbox {% endcomment %}
+    <div class="form__group">
+      <div class="form__checkbox">
+        {{ form.set_as_default_checkbox }}
+        <label for="address_default_address_new">Set as default address</label>
+      </div>
+    </div>
+    
+    {% comment %} Submit/Cancel {% endcomment %}
+    <div class="form__footer wysiwyg">
+      <button type="submit" class="btn btn--primary">Add Address</button>
+      <a data-address-toggle href="#">Cancel</a>
+    </div>
+  {% endform %}
+</div>

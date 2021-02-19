@@ -1,0 +1,33 @@
+<div class="panel">
+  <div class="container container--medium">
+    {% comment %} Header {% endcomment %}
+    <div class="page-header">
+      <h1 class="page-header__title">{{ section.settings.title }}</h1>
+    </div>
+
+    {% comment %} Main {% endcomment %}
+    <div class="page-main wysiwyg">
+      {{ section.settings.text }}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "404",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "404 Page Not Found"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text",
+        "default": "<p>The page you requested does not exist. Click <a href='/'>here</a> to continue shopping.</p>"
+      }
+    ]
+  }
+{% endschema %}

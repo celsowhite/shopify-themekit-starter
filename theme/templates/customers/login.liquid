@@ -1,0 +1,137 @@
+<main class="page-main">
+  <div class="panel">
+    <div class="container container--small">
+      <div class="content-block">
+        <header class="content-block-header content-block-header--center">
+          <h1 class="h2 content-block-header__title">Login</h1>
+        </header>
+
+        {% comment %}
+        Password Reset Success Message.
+        Shown to indicate an email has successfully been sent for the user to reset their password.
+        Showing this message is controlled using js in section-switcher.js.
+        {% endcomment %}
+
+        <div class="notification-banner notification-banner--valid" id="reset-success-message" style="display: none;">
+          <p>We've sent you an email with a link to update your password.</p>
+        </div>
+
+        {% comment %}
+        Main customer log in. Including log in form, forgot password toggle link and button that links to create account page.
+        {% endcomment %}
+
+        <div id="customer-login-form" class="switchable-section">
+          {% form 'customer_login' %}
+            {% if form.errors %}
+              <div class="notification-banner notification-banner--invalid wysiwyg">
+                {% for field in form.errors %}
+                  {% if field == 'form' %}
+                    <p>{{ form.errors.messages[field] }}</p>
+                  {% else %}
+                    <p>{{ form.errors.translated_fields[field] }} - {{ form.errors.messages[field] }}</p>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+            
+            <div class="form__group">
+              <label for="customer_email">Email*</label>
+              <input 
+              required 
+              type="email" 
+              value="" 
+              autofocus
+              tabindex="1"
+              name="customer[email]" 
+              id="customer_email" 
+              class="{% if form.errors contains 'email' %}error{% endif %}"
+              spellcheck="false"
+              autocapitalize="off"
+              autofocus
+              />
+            </div>
+
+            <div class="form__group">
+              <div class="label__header">
+                <label for="customer_password">Password*</label>
+                <p class="wysiwyg"><a href="#" class="section-switcher text-color--orange" data-section-to-show="recover">Forgot your password?</a></p>
+              </div>
+              <input 
+              type="password"
+              tabindex="2"
+              name="customer[password]"
+              id="customer_password"
+              class="{% if form.errors contains 'password' %}error{% endif %}"
+              />
+            </div>
+            
+            <div class="form__group">
+              <button
+              type="submit" 
+              class="btn btn--primary btn--full-width" 
+              tabindex="3">Login</button>
+            </div>
+
+            <p class="wysiwyg text-align--center">New Customer? <a href="{{ routes.account_register_url }}" class="text-color--orange">Sign Up</a></p>
+          {% endform %}
+        </div>
+
+        {% comment %}
+        Recover Password
+        {% endcomment %}
+
+        <div id="recover" class="switchable-section" style="display: none">
+          <p>We will send you an email to reset your password.</p>
+
+          {% form 'recover_customer_password' %}
+
+            {% comment %}
+            Hidden password success element. Our js checks if this element is displayed.
+            If so then we show the reset password success message at the top of the page.
+            {% endcomment %}
+
+            {% if form.posted_successfully? %}
+              <span class="reset-password-success" style="display: none;"></span>
+            {% endif %}
+
+            {% if form.errors %}
+              <div class="notification-banner notification-banner--invalid wysiwyg">
+                {% for field in form.errors %}
+                  {% if field == 'form' %}
+                    <p>{{ form.errors.messages[field] }}</p>
+                  {% else %}
+                    <p>{{ form.errors.translated_fields[field] }} - {{ form.errors.messages[field] }}</p>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            <div class="form__group">
+              <label for="email">Email*</label>
+              <input required type="email" value="" name="email" id="recover-email" />
+            </div>
+
+            <div class="form__group">
+              <button type="submit" class="btn btn--primary btn--full-width">Submit</button>
+            </div>
+
+            <p class="wysiwyg text-align--center"><a href="#" class="section-switcher text-color--orange" data-section-to-show="customer-login-form">Cancel</a></p>
+          {% endform %}
+        </div>
+
+        {% comment %}
+        Guest Checkout
+        Only displayed when a user arrives at the login page via the checkout screen.
+        {% endcomment %}
+
+        {% if shop.checkout.guest_login %}
+          {% form 'guest_login' %}
+            <h2>Continue With Purchase</h2>
+            <p>Checkout as a guest. You may create an account later if you wish.</p>
+            <button class="underline-link" type="submit">Continue</a>
+          {% endform %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</main>

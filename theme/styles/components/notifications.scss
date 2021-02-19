@@ -1,0 +1,79 @@
+/*----------------------------
+Cookie Consent
+----------------------------*/
+
+// Structure
+
+.cookie-consent {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: var(--color-white);
+  width: 100%;
+  z-index: var(--z-index-priority-content-high);
+  padding: 10px 0;
+  font-size: 0.8em;
+}
+
+.cookie-consent__container {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  @media all and (max-width: 768px) {
+    justify-content: center;
+  }
+}
+
+// Text
+
+.cookie-consent__text {
+  width: 70%;
+
+  @media all and (max-width: 768px) {
+    width: 100%;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+}
+
+/*----------------------------
+Banner
+----------------------------*/
+
+// Default
+
+.notification-banner {
+  padding: 10px 10px 6px;
+  margin-bottom: 20px;
+  position: relative;
+  color: var(--color-white);
+}
+
+.notification-banner p {
+  font-family: inherit;
+}
+
+.notification-banner p:last-of-type {
+  margin-bottom: 0;
+}
+
+// Dismissible
+// By default hide dismissible notifications.
+
+.notification--is-dismissible {
+  display: none;
+}
+
+// Valid
+
+.notification-banner--valid {
+  background: var(--color-black);
+}
+
+// Invalid
+
+.notification-banner--invalid {
+  background: var(--color-red);
+}

@@ -1,0 +1,145 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": " Slate Starter",
+    "theme_version": "1.0.0",
+    "theme_author": "Celso White",
+    "theme_documentation_url": "https://github.com/Shopify/skeleton-theme",
+    "theme_support_url": "https://github.com/Shopify/skeleton-theme/issues"
+  },
+  {
+    "name": "Contact Information",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Phone"
+      },
+      {
+        "type": "text",
+        "id": "phone_label",
+        "label": "Label"
+      },
+      {
+        "type": "text",
+        "id": "phone_number",
+        "label": "Number"
+      },
+      {
+        "type": "header",
+        "content": "Email"
+      },
+      {
+        "type": "text",
+        "id": "email_label",
+        "label": "Label"
+      },
+      {
+        "type": "text",
+        "id": "email_address",
+        "label": "Email Address"
+      },
+      {
+        "type": "header",
+        "content": "Copyright"
+      },
+      {
+        "type": "text",
+        "id": "copyright_label",
+        "label": "Label"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Accounts"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "Tik Tok"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram"
+      },
+      {
+        "type": "text",
+        "id": "social_snapchat_link",
+        "label": "Snapchat"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "richtext",
+        "id": "cart_empty_message_text",
+        "label": "Empty Message Text",
+        "default": "<p>Your cart is empty. Click <a href='/pages/shop'>here</a> to shop.</p>"
+      },
+      {
+        "type": "text",
+        "id": "cart_message_text",
+        "label": "Message Text",
+        "default": "Have a discount code? Add it in the next step."
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon Image",
+        "info": "200px x 200px. The favicon will be resized for use in various browser icon formats."
+      }
+    ]
+  },
+  {
+    "name": "Cookie Consent",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "The cookie consent is a message that appears once for each user (unless they clear their cache or use a different browser). It informs them that we are using tracking and other cookies to optimize their experience in the site."
+      },
+      {
+        "type": "richtext",
+        "id": "cookie_consent_text",
+        "label": "Text",
+        "default": "<p>This site uses cookies to offer you a better browsing experience. By continuing to access the web site, you agree that we will store personal data in a cookie as outlined in our <a href=\"/pages/terms-conditions\" title=\"Terms &amp; Conditions\">Privacy Policy</a>.</p>"
+      },
+      {
+        "type": "text",
+        "id": "cookie_consent_button_label",
+        "label": "Button Label",
+        "default": "Close & Agree"
+      }
+    ]
+  }
+]

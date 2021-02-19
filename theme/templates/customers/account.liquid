@@ -1,0 +1,86 @@
+{% comment %} Main {% endcomment %}
+
+<main class="page-main">
+  <div class="panel">
+    <div class="container">
+      <div class="row">
+
+        {% comment %} Sidebar {% endcomment %}
+        <div class="col col--1-4">
+          {% render 'account-navigation' %}
+        </div>
+
+        <div class="col col--3-4">
+          <div class="content-block">   
+            <header class="content-block-header">
+              <h1 class="content-block-header__title">Account</h1>
+            </header>
+
+            {% comment %} Personal Info {% endcomment %}
+            <div class="content-block__section">
+              <h4>Personal Information</h4>
+              <p>Name: {{ customer.name }}<br>Email: {{ customer.email }}</p>
+            </div>
+
+            {% comment %} Order History {% endcomment %}
+            
+            <div class="content-block__section">
+              <h4>Order History</h4>
+              {% if customer.metafields.subscriptions.customer_string %}
+                <p class="wysiwyg">All of your orders will appear below. To view and manage your subscriptions <a href="/tools/recurring/customer/{{customer.metafields.subscriptions.customer_string}}/subscriptions/">click here.</a> You'll be taken to a seperate subscription portal.</p> 
+              {% endif %}
+
+              {% if customer.orders.size != 0 %}
+
+                {% comment %} Desktop Orders List {% endcomment %}
+
+                <div class="table">
+                  <div class="table__header">
+                    <div class="table__row">
+                      <div class="table__row-inner">
+                        <div class="table__cell table__cell--left">Order</div>
+                        <div class="table__cell">Date</div>
+                        <div class="table__cell">Payment Status</div>
+                        <div class="table__cell">Shipment Status</div>
+                        <div class="table__cell table__cell--right">Total</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="table__body wysiwyg">
+                    {% for order in customer.orders %}
+                      <div class="table__row">
+                        <div class="table__row-inner">
+                          <div class="table__cell table__cell--left"><a href="{{ order.customer_url }}">{{ order.name }}</a></div>
+                          <div class="table__cell">{{ order.created_at | date: "%b %d, %Y" }}</div>
+                          <div class="table__cell">{{ order.financial_status_label }}</div>
+                          <div class="table__cell">{{ order.fulfillment_status_label }}</div>
+                          <div class="table__cell table__cell--right">{{ order.total_price | money }}</div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+
+              {% else %}
+                <p>You haven't placed any orders yet.</p>
+              {% endif %}
+            </div>
+
+            {% comment %} Default Address {% endcomment %}
+            <div class="content-block__section">
+              <h4>Default Address</h4>
+              {% if customer.default_address %}
+                <div class="info-card-list">
+                  <div class="info-card">
+                    {{ customer.default_address | format_address }}
+                  </div>
+                </div>
+              {% endif %}
+              <p class="wysiwyg"><a href="{{ routes.account_addresses_url }}">Add/Edit Addresses</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

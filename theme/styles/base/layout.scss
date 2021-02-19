@@ -1,0 +1,133 @@
+/*-------------------------------
+General
+-------------------------------*/
+
+html {
+  height: 100%;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// hides un-compiled mustache bindings until the Vue instance is ready.
+
+[v-cloak] {
+  display: none;
+}
+
+/*-------------------------------
+Main
+-------------------------------*/
+
+#main {
+  opacity: 1;
+  transition: opacity var(--transition-duration-fast) ease-in-out;
+}
+
+/* .page--is-loaded #main {
+  opacity: 1;
+} */
+
+/*-------------------------------
+Containers
+-------------------------------*/
+
+.container {
+  position: relative;
+  max-width: 1300px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+.container--medium {
+  max-width: 800px;
+}
+
+.container--small {
+  max-width: 550px;
+}
+
+/*-------------------------------
+Page Content
+-------------------------------*/
+
+// Header
+
+.page-header {
+  margin-bottom: 80px;
+}
+
+.page-header__title {
+  margin: 0;
+}
+
+.page-header__subtitle {
+  margin: 5px 0 0;
+}
+
+// Main
+
+.page-main {
+}
+
+/*-------------------------------
+Panels
+-------------------------------*/
+
+.panel {
+  position: relative;
+  padding: 100px 0;
+
+  @media all and (max-width: 768px) {
+    padding: 40px 0;
+  }
+}
+
+.panel--padding-bottom {
+  padding: 0 0 100px;
+
+  @media all and (max-width: 768px) {
+    padding: 0 0 40px;
+  }
+}
+
+/*-------------------------------
+Content Block
+-------------------------------*/
+
+.content-block {
+  background: var(--color-grey);
+  padding: 40px;
+  border-radius: var(--border-radius);
+}
+
+// Header
+
+.content-block-header {
+  margin-bottom: 50px;
+}
+
+.content-block-header--center {
+  text-align: center;
+}
+
+.content-block-header--flexed {
+  display: flex;
+  justify-content: space-between;
+}
+
+.content-block-header__title {
+  display: inline-block;
+  padding-bottom: 20px;
+}

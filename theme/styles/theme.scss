@@ -1,0 +1,45 @@
+@charset 'UTF-8';
+
+// Base - Base styles that should be available across all templates.
+
+@import './base/normalize';
+@import './base/fonts';
+@import './base/helpers';
+@import './base/layout';
+@import './base/grid';
+@import './base/media';
+
+// Components - Global components that should be available across all templates.
+
+@import './components/forms';
+@import './components/headers';
+@import './components/select-dropdown';
+@import './components/buttons';
+@import './components/email-signup';
+@import './components/quantity-input';
+@import './components/lists';
+@import './components/menu-icon';
+@import './components/loading-icon';
+@import './components/flickity';
+@import './components/social-icons';
+@import './components/pagination';
+@import './components/info-card';
+@import './components/tables';
+@import './components/notifications';
+@import './components/product-tile';
+@import './components/mobile-nav-overlay';
+@import './components/article-card';
+
+// Sections
+
+@import './sections/top-messaging';
+@import './sections/header';
+@import './sections/footer';
+
+// Templates - Should be imported directly into a templates script file to take advantage of bundle splitting.
+
+@import './templates/article';
+@import './templates/product';
+@import './templates/cart';
+@import './templates/customers/addresses';
+@import './templates/customers/customers';

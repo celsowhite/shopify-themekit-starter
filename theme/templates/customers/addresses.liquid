@@ -1,0 +1,96 @@
+{% comment %} Main {% endcomment %}
+
+<main class="page-main">
+  <div class="panel">
+    <div class="container">
+      <div class="row">
+
+        {% comment %} Sidebar {% endcomment %}
+
+        <div class="col col--1-4">
+          {% render 'account-navigation' %}
+        </div>
+
+        <div class="col col--3-4">    
+
+          <div class="content-block">
+            <header class="content-block-header">
+              <h1 class="content-block-header__title">Addresses</h1>
+            </header>
+
+            <div data-address>
+
+              <header class="flex-header">
+                <h4>Your Addresses</h4>
+                <p class="wysiwyg"><a data-address-toggle href="#">Add New Address</a></p>
+              </header>
+
+              {% comment %} New Address Form {% endcomment %}
+
+              {% render 'form-address-new' %}
+
+            </div>
+
+            {% comment %} Addresses {% endcomment %}
+
+            {% paginate customer.addresses by 5 %}
+
+              {% comment %}
+              List Of Addresses
+              {% endcomment %}
+
+              <div class="address-cards">
+
+                {% for address in customer.addresses %}
+
+                  <div data-address>
+
+                    {% comment %} Address Card {% endcomment %}
+
+                    <div class="address-card">
+                      {{ address | format_address }}
+                      {% comment %} Footer {% endcomment %}
+                      <div class="address-card__footer">
+                        <div class="wysiwyg">
+                          <a data-address-toggle href="#">Edit</a>
+                          {% comment %} <a data-address-delete-form data-form-id="{{ address.id }}">Delete</a> {% endcomment %}
+                          <form 
+                          class="address-delete-form"
+                          style="display: inline-block"
+                          data-address-delete-form method="post" 
+                          action="{{ routes.account_addresses_url }}/{{ address.id }}" 
+                          data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <button type="submit" class="underline-link-btn">
+                              Delete
+                            </button>
+                          </form>
+                        </div>
+                        {% if address == customer.default_address %}
+                          <p>Default</p>
+                        {% endif %}
+                      </div>
+                    </div>
+
+                    {% comment %} Edit Address Form {% endcomment %}
+
+                    {% render 'form-address-edit', address: address %}
+
+                  </div>
+
+                {% endfor %}
+
+              </div>
+
+              {% if paginate.pages > 1 %}
+                {% render 'pagination' %}
+              {% endif %}
+
+            {% endpaginate %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

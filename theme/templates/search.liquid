@@ -1,0 +1,45 @@
+{% paginate search.results by 3 %}
+
+  {% comment %} Header {% endcomment %}
+
+  <header class="page-header">
+    <div class="section-header">
+      <h2 class="section-header__title">Search{% if search.performed %}: {{ search.terms }}{% endif %}</h2>
+    </div>
+    {% if search.performed %}
+      <div class="page-header__content">
+        <p>{{ search.results_count }} results</p>
+      </div>
+    {% endif %}
+  </header>
+
+  {% comment %} Content {% endcomment %}
+
+  <main class="page-main">
+    <div class="container">
+      <div class="search-page__form">
+        {% render 'form-search' %}
+      </div>
+      {% if search.performed %}
+        <div class="row">
+          {% for item in search.results %}
+            {% comment %} Product {% endcomment %}
+            {% if item.object_type == 'product' %}
+              {% assign product = item %}
+              <div class="col col--1-3">
+                {% render 'product-tile' %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </main>
+
+  {% comment %} Pagination {% endcomment %}
+
+  {% if paginate.pages > 1 %}
+    {% render 'pagination' %}
+  {% endif %}
+
+{% endpaginate %}

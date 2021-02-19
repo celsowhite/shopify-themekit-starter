@@ -1,0 +1,17 @@
+{% comment %} 
+Mini Cart Component
+---
+Renders cart items via Vue and mimicks the same cart markup as the cart page. 
+{% endcomment %}
+
+<div id="cart-vue">
+  <div 
+  v-cloak 
+  class="mini-cart-container"
+  :class="{ 'mini-cart-container--is-open': $store.state.cart.miniCartIsOpen }">
+    <div class="mini-cart__transparent-layer" @click="toggleMiniCart"></div>
+    <div class="mini-cart">
+      {% render 'cart' %}
+    </div>
+  </div>
+</div>

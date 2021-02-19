@@ -1,0 +1,75 @@
+/*-------------------------------
+Structure
+-------------------------------*/
+
+.single-toggle-list {
+  border-top: 1px solid var(--color-black);
+}
+
+.single-toggle {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--color-black);
+}
+
+/*-------------------------------
+Header
+-------------------------------*/
+
+.single-toggle__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+// Title
+
+.single-toggle__title {
+  margin: 0;
+}
+
+// Symbol
+
+.single-toggle__symbol {
+  flex: 0 0 40px;
+  text-align: right;
+}
+
+.single-toggle__symbol:before {
+  font-size: 1.3em;
+  line-height: 1;
+}
+
+.single-toggle .single-toggle__symbol:before {
+  content: '+';
+}
+
+.single-toggle.open .single-toggle__symbol:before {
+  content: '-';
+}
+
+/*-------------------------------
+Content
+-------------------------------*/
+
+.single-toggle__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 1s ease-in-out;
+}
+
+.single-toggle.open .single-toggle__content {
+  max-height: 800px;
+}
+
+// Inner
+
+.single-toggle__content-inner {
+  padding-top: 20px;
+  opacity: 0;
+  transition: all 1s ease-in-out;
+}
+
+.single-toggle.open .single-toggle__content-inner {
+  opacity: 1;
+}

@@ -1,0 +1,22 @@
+/*-------------------------------
+Structure
+-------------------------------*/
+
+.main-footer {
+  background: var(--color-black);
+  color: var(--color-white);
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding: 100px 0;
+}
+
+/*-------------------------------
+Social
+-------------------------------*/
+
+.main-footer__social {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}

@@ -1,0 +1,38 @@
+/*-------------------------------
+Menu Icon
+-------------------------------*/
+
+.menu-icon {
+  cursor: pointer;
+  width: 25px;
+  height: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  position: relative;
+}
+
+// Lines
+
+.menu-icon__line {
+  height: 2px;
+  width: 100%;
+  background: var(--color-black);
+  display: block;
+  backface-visibility: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-icon.active .menu-icon__line:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.menu-icon.active .menu-icon__line:nth-child(2) {
+  transform: rotate(-45deg);
+}
+
+.menu-icon.active .menu-icon__line:nth-child(3) {
+  transform: scale(0);
+}

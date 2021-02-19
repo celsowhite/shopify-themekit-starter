@@ -1,0 +1,48 @@
+/*-------------------------------
+Structure
+-------------------------------*/
+
+.article-card {
+  padding-bottom: 40px;
+  border-bottom: 2px solid var(--color-black);
+  margin-bottom: 40px;
+}
+
+/*-------------------------------
+Header
+-------------------------------*/
+
+header.article-card__header {
+  margin-bottom: 20px;
+}
+
+.article-card__title {
+  margin-bottom: 10px;
+}
+
+.article-card__title a {
+  transition: all var(--transition-duration-fast)
+    var(--transition-easing-standard);
+}
+
+.article-card__title a:hover {
+  color: var(--color-black);
+}
+
+/*-------------------------------
+Featured Image
+-------------------------------*/
+
+.article-card__featured-image {
+  display: block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+/*-------------------------------
+Excerpt
+-------------------------------*/
+
+.article-card__excerpt {
+  margin-bottom: 20px;
+}

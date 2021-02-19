@@ -1,0 +1,188 @@
+{% comment %} Main {% endcomment %}
+
+<main class="page-main">
+  <div class="panel">
+    <div class="container">
+      <div class="row">
+        <div class="col col--1-4">
+          {% render 'account-navigation' %}
+        </div>
+
+        <div class="col col--3-4">
+          <div class="content-block">
+            {% comment %} Header {% endcomment %}
+            <header class="content-block__header content-block__header--flexed">
+              <h2 class="content-block__header-title">Order {{ order.name }}</h2>
+              <p>{{ order.created_at | date: "%B %d, %Y" }}</p>
+            </header>
+
+            {% comment %} Shipping and Address Details {% endcomment %}
+
+            <div class="row">
+              <div class="col col--1-2">
+                <h4>Shipped To</h4>
+                {{ order.shipping_address | format_address }}
+
+                <h4>Shipping Method</h4>
+                Shipment Status: {{ order.fulfillment_status_label }}
+              </div>
+
+              <div class="col col--1-2">
+                <h4>Payment Status</h4>
+                <p>{{ order.financial_status_label }}</p>
+
+                <h4>Billing Address</h4>
+                {{ order.billing_address | format_address }}
+              </div>
+            </div>
+
+            {% comment %} Order Details Table {% endcomment %}
+
+            <div class="table">
+              <div class="table__header">
+                <div class="table__row">
+                  <div class="table__row-inner">
+                    <div class="table__cell table__cell--fourty table__cell--left">Item</div>
+                    <div class="table__cell table__cell--twenty">Unit Price</div>
+                    <div class="table__cell table__cell--twenty">Quantity</div>
+                    <div class="table__cell table__cell--twenty table__cell--right">Subtotal</div>
+                  </div>
+                </div>
+              </div>
+              <div class="table__body">
+                {% for line_item in order.line_items %}
+                  {% comment %} Order Line Item Row {% endcomment %}
+                  <div class="table__row">
+                    <div class="table__row-inner">
+                      <div class="table__cell table__cell--fourty table__cell--left order-cart-item">
+                        {% comment %} Image {% endcomment %}
+                        <a href="{{ line_item.url }}" class="order-cart-item__image">
+                          <img src="{{ line_item.image | img_url: '240x240' }}" alt="{{ line_item.title | escape }}" />
+                        </a>
+                        {% comment %} Item Details {% endcomment %}
+                        <div class="order-cart-item__details">
+                          {% comment %} Product Title {% endcomment %}
+                          <p><a href="{{ line_item.url }}">{{ line_item.product.title }}</a></p>
+                          {% comment %} Variants {% endcomment %}
+                          <p>{{ line_item.variant.title }}</p>
+                          {% comment %} Fulfillment {% endcomment %}
+                          {% if line_item.fulfillment %}
+                            <p>
+                            <b>Shipped:</b> {{ line_item.fulfillment.created_at | date: "%b %d" }}
+                            {% if line_item.fulfillment.tracking_number %}
+                              <a href="{{ line_item.fulfillment.tracking_url }}">{{ line_item.fulfillment.tracking_company }} #{{ line_item.fulfillment.tracking_number}}</a>
+                            {% endif %}
+                            </p>
+                          {% endif %}
+                        </div>
+                      </div>
+                      <div class="table__cell table__cell--twenty">{{ line_item.price | money }}</div>
+                      <div class="table__cell table__cell--twenty">{{ line_item.quantity }}</div>
+                      <div class="table__cell table__cell--twenty table__cell--right">{{ line_item.quantity | times: line_item.price | money }}</div>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="table">
+              {% comment %} Footer {% endcomment %}
+              <div class="table__footer">
+                {% comment %} Subtotal {% endcomment %}
+                <div class="table__row">
+                  <div class="table__row-inner">
+                    <div class="table__cell table__cell--50 table__cell--left">
+                      Subtotal
+                    </div>
+                    <div class="table__cell table__cell--50 table__cell--right">  
+                      {% comment %}
+                      If order has discounts then show the subtotal price without those discounts already taken out.
+                      {% endcomment %}
+                      {% if order.discounts %}
+                        {% assign subtotal_without_discounts = order.subtotal_price %}
+                        {% for discount in order.discounts %}
+                            {% capture subtotal_without_discounts %}{{ subtotal_without_discounts | plus: discount.amount }}{% endcapture %}
+                        {% endfor %}
+                        <span>{{ subtotal_without_discounts | money }}</span>
+                      {% comment %}
+                          Else show the regular subtotal price.
+                      {% endcomment %}
+                      {% else %}
+                        <span>{{ order.subtotal_price | money }}</span>
+                      {% endif %} 
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} Discounts {% endcomment %}
+                {% for discount in order.discounts %}
+                  <div class="table__row">
+                    <div class="table__row-inner">
+                      <div class="table__cell table__cell--50 table__cell--left">
+                        Discount ({{ discount.code }}):
+                      </div>
+                      <div class="table__cell table__cell--50 table__cell--right">  
+                        -{{ discount.amount | money }}
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+
+                {% comment %} Shipping {% endcomment %}
+                {% for shipping_method in order.shipping_methods %}
+                  <div class="table__row">
+                    <div class="table__row-inner">
+                      <div class="table__cell table__cell--50 table__cell--left">
+                        Shipping ({{ shipping_method.title }})
+                      </div>
+                      <div class="table__cell table__cell--50 table__cell--right">  
+                        {{ shipping_method.price | money }}
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+
+                {% comment %} Total Before Tax {% endcomment %}
+                <div class="table__row">
+                  <div class="table__row-inner">
+                    <div class="table__cell table__cell--50 table__cell--left">
+                      Total Before Tax
+                    </div>
+                    <div class="table__cell table__cell--50 table__cell--right">  
+                      {{ order.subtotal_price | plus: order.shipping_price | money }}
+                    </div>
+                  </div>
+                </div>
+
+                {% comment %} Taxes {% endcomment %}
+                {% for tax_line in order.tax_lines %}
+                  <div class="table__row">
+                    <div class="table__row-inner">
+                      <div class="table__cell table__cell--50 table__cell--left">
+                        Tax ({{ tax_line.title }} {{ tax_line.rate | times: 100 }}%)
+                      </div>
+                      <div class="table__cell table__cell--50 table__cell--right">  
+                        {{ tax_line.price | money }}
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+
+                {% comment %} Total {% endcomment %}
+                <div class="table__row">
+                  <div class="table__row-inner">
+                    <div class="table__cell table__cell--50 table__cell--left">
+                      Order Total
+                    </div>
+                    <div class="table__cell table__cell--50 table__cell--right">  
+                      {{ order.total_price | money }}
+                    </div>
+                  </div>
+                </div>
+              </div>  
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

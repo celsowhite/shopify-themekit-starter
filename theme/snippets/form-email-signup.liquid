@@ -1,0 +1,12 @@
+{% comment %}
+Email Signup Form
+{% endcomment %}
+
+<div class="email-signup">
+  <form method="post" class="email-signup__form klaviyo-form">
+    <input type="hidden" name="g" value="{{ list_id }}">
+    <input type="email"  name="email" class="email-signup__input email-signup__email" placeholder="Email Address" required>
+    <button type="submit" class="email-signup__submit btn btn--secondary">{{ button_label }}</button>
+  </form>
+  <div class="email-signup__response" style="display: none"></div>
+</div>

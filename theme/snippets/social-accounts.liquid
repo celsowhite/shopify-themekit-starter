@@ -1,0 +1,51 @@
+<ul class="social-icons">
+  {% if settings.social_tiktok_link != blank %}
+    <li>
+      <a target="_blank" href="{{ settings.social_tiktok_link }}">
+        {% render 'svg-icon-tiktok' %}
+      </a>
+    </li>
+  {% endif %}
+  {% if settings.social_facebook_link != blank %}
+    <li>
+      <a target="_blank" href="{{ settings.social_facebook_link }}">
+        {% render 'svg-icon-facebook' %}
+      </a>
+    </li>
+  {% endif %}
+  {% if settings.social_twitter_link != blank %}
+    <li>
+      <a target="_blank" href="{{ settings.social_twitter_link }}">
+        {% render 'svg-icon-twitter' %}
+      </a>
+    </li>
+  {% endif %}
+  {% if settings.social_pinterest_link != blank %}
+    <li>
+      <a target="_blank" href="{{ settings.social_pinterest_link }}">
+        {% render 'svg-icon-pinterest' %}
+      </a>
+    </li>
+  {% endif %}
+  {% if settings.social_instagram_link != blank %}
+    <li>
+      <a target="_blank" href="{{ settings.social_instagram_link }}">
+        {% render 'svg-icon-instagram' %}
+      </a>
+    </li>
+  {% endif %}
+  {% if settings.social_snapchat_link != blank %}
+    <li>
+      <a target="_blank" href="{{ settings.social_snapchat_link }}">
+        {% render 'svg-icon-snapchat' %}
+      </a>
+    </li>
+  {% endif %}
+  {% if settings.social_youtube_link != blank %}
+    <li>
+      <a target="_blank" href="{{ settings.social_youtube_link }}">
+        {% render 'svg-icon-youtube' %}
+      </a>
+    </li>
+  {% endif %}
+</ul>

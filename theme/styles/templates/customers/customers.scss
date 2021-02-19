@@ -1,0 +1,37 @@
+/*----------------------------
+Customers
+---
+General account styling that applies across templates.
+----------------------------*/
+
+/*----------------------------
+Account Navigation
+----------------------------*/
+
+// Select
+
+.account-navigation-select {
+  margin-bottom: 20px;
+}
+
+.account-navigation-select select {
+  text-transform: lowercase;
+}
+
+// List
+
+.account-navigation-list__item {
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: color 0.3s ease-in-out;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &.active,
+  &:hover {
+    color: var(--color-orange);
+  }
+}

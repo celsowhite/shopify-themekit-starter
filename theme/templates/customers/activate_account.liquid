@@ -1,0 +1,57 @@
+{% comment %} Header {% endcomment %}
+
+<header class="page-header">
+  <div class="container">
+    <h1 class="page-header__title">Activate Account</h1>
+  </div>
+</header>
+
+{% comment %} Main {% endcomment %}
+
+<main class="page-main">
+  <div class="container container--small">
+  
+    {% form 'activate_customer_password' %}
+
+      {% if form.errors %}
+        <div class="notification-banner notification-banner--invalid wysiwyg">
+          {% for field in form.errors %}
+            {% if field == 'form' %}
+              <p>{{ form.errors.messages[field] }}</p>
+            {% else %}
+              <p>{{ form.errors.translated_fields[field] }} - {{ form.errors.messages[field] }}</p>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <div class="form__group">
+        <label for="customer_password">Password*</label>
+        <input 
+          type="password"
+          required
+          name="customer[password]"
+          id="customer_password"
+        />
+      </div>
+
+      <div class="form__group">
+        <label for="customer_password_confirm">Confirm Password*</label>
+        <input 
+          type="password"
+          required
+          name="customer[password_confirmation]"
+          id="customer_password"
+        />
+      </div>
+
+      <div class="form__footer">
+        <input type="submit" class="btn btn--primary" value="Activate Account">
+        <p class="wysiwyg"><a href="/">Decline Invitation</a></p>
+      </div>
+
+    {% endform %}
+
+  </div>
+
+</div>

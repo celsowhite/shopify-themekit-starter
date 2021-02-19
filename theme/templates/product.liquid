@@ -1,0 +1,19 @@
+{% comment %} Top {% endcomment %}
+
+<div class="pdp-top" id="main-vue">
+  <div class="container pdp-top__container">
+    {% comment %} PDP Image Slider {% endcomment %}
+    <div class="pdp-top__slider">
+      {% render 'pdp-slider' %}
+    </div>
+
+    {% comment %} PDP Details {% endcomment %}
+    <div class="pdp-details">
+      {% render 'add-to-cart' %}
+    </div>
+  </div>
+</div>
+
+{% comment %} SEO {% endcomment %}
+
+{% render 'json-ld-product' %}

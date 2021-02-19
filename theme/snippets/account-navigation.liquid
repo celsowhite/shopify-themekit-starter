@@ -1,0 +1,21 @@
+{% comment %} Mobile Select Dropdown {% endcomment %}
+
+<div class="tablet--show">
+  <div class="form__group account-navigation-select">
+    <select class="url-select">
+      <option value="{{ routes.account_url }}" {% if template.name == 'account' %}selected{% endif %}>Account</option>
+      <option value="{{ routes.account_addresses_url }}" {% if template.name == 'addresses' %}selected{% endif %}>Addresses</option>
+      <option value="{{ routes.account_logout_url }}">Sign Out</option>
+    </select>
+  </div>
+</div>
+
+{% comment %} Desktop List {% endcomment %}
+
+<div class="tablet--hide">
+  <ul class="account-navigation-list">
+    <li class="account-navigation-list__item {% if template.name == 'account' %}active{% endif %}"><a href="{{ routes.account_url }}">Account</a></li>
+    <li class="account-navigation-list__item {% if template.name == 'addresses' %}active{% endif %}"><a href="{{ routes.account_addresses_url }}">Addresses</a></li>
+    <li class="account-navigation-list__item"><a href="{{ routes.account_logout_url }}">Sign Out</a>
+  </ul>
+</div>

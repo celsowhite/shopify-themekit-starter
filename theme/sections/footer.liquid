@@ -1,0 +1,17 @@
+{% comment %} Main Footer {% endcomment %}
+
+<footer class="main-footer">
+  <div class="container container--medium">
+    {% render 'form-email-signup', button_label: 'Sign Up', list_id: '131313' %}
+    <div class="main-footer__social">
+      {% render 'social-accounts' %}peace
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": []
+  }
+{% endschema %}

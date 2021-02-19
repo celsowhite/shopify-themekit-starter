@@ -1,0 +1,73 @@
+/*-------------------------------
+Tile
+-------------------------------*/
+
+// Structure
+
+.product-tile {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  // customized based on placement
+}
+
+.product-tile__inner {
+  background: var(--color-white);
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: 100%;
+}
+
+// Image
+
+.product-tile__image {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.product-tile__image img {
+  display: block;
+  width: 100%;
+}
+
+// Content
+
+.product-tile__content {
+  margin: 0 0 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.product-tile__title-container {
+  margin: 0 10px 0 0;
+}
+
+.product-tile__title {
+  margin: 0;
+}
+
+.product-tile__subtitle {
+  margin: 5px 0 0;
+}
+
+.product-tile__category {
+  margin-bottom: 0;
+  text-transform: lowercase;
+}
+
+// Prices
+
+.product-tile__prices-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.product-tile__price {
+  margin-bottom: 0;
+}
+
+.product-tile__price strike {
+  opacity: 0.5;
+}

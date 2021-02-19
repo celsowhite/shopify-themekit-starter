@@ -1,0 +1,16 @@
+{% comment %} Global Structured Data {% endcomment %}
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "{{ shop.name }}",
+    "logo": "https:{{ 'logo.png' | asset_url }}",
+    "sameAs": [
+      {%- for link in linklists.social-links.links -%}
+        "{{ link.url }}"{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ],
+    "url": "{{ shop.url }}{{ page.url }}"
+  }
+</script>

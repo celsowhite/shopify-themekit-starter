@@ -1,0 +1,36 @@
+/*-------------------------------
+Address Card
+-------------------------------*/
+
+// Container
+
+.address-card {
+  background: transparent;
+  border-bottom: 1px solid var(--color-black);
+  margin-bottom: 20px;
+  padding: 0 0 20px;
+}
+
+.address-card p {
+  margin-bottom: 0;
+}
+
+.address-card:last-of-type {
+  border-bottom: 0;
+  padding: 0;
+}
+
+// Header
+
+.address-card__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+// Footer
+
+.address-card__footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}

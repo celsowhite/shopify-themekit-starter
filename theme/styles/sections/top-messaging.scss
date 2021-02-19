@@ -1,0 +1,18 @@
+/*-------------------------------
+Structure
+-------------------------------*/
+
+.top-messaging {
+  background: var(--color-black-lighter);
+  line-height: normal;
+  overflow: hidden;
+  text-align: center;
+}
+
+.top-messaging__content p {
+  font-size: 12px;
+
+  @media all and (min-width: 768px) {
+    font-size: 16px;
+  }
+}

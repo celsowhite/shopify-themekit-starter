@@ -1,0 +1,112 @@
+/*-------------------------------
+Structure
+-------------------------------*/
+
+.select-dropdown {
+  position: relative;
+}
+
+/*-------------------------------
+Header
+-------------------------------*/
+
+.select-dropdown__header {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid;
+  padding: 10px 0px 5px;
+  line-height: 1;
+}
+
+// Title
+
+.select-dropdown__title {
+  font-family: 'founders-grotesk-medium';
+  width: 100%;
+  padding-right: 10px;
+}
+
+// Icon
+
+.select-dropdown__icon {
+  width: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.select-dropdown__icon svg {
+  display: block;
+}
+
+.select-dropdown--is-open .select-dropdown__icon {
+  transform: rotate(-180deg);
+}
+
+/*-------------------------------
+List
+-------------------------------*/
+
+.select-dropdown__list {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  background: var(--color-black);
+  padding: 10px 0;
+  max-height: 200px;
+  overflow: auto;
+  pointer-events: none;
+  opacity: 0;
+  z-index: var(--z-index-priority-content);
+  transition: all var(--transition-duration-fast) ease-in-out;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-black);
+  }
+}
+
+.select-dropdown--is-open .select-dropdown__list {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+// Items
+
+.select-dropdown__list-item {
+  color: var(--color-white);
+  opacity: 0;
+  padding: 0 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: opacity var(--transition-duration-fast) ease-in-out;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.select-dropdown__list-item--is-active {
+  color: var(--color-white);
+}
+
+.select-dropdown__list-item a {
+  display: block;
+  transition: opacity var(--transition-duration-fast) ease-in-out;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.select-dropdown--is-open li {
+  opacity: 1;
+}

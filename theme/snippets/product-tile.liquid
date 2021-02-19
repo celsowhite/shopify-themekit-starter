@@ -1,0 +1,29 @@
+{% comment %} 
+Product  Tile 
+{% endcomment %}
+
+<a class="product-tile" href="{{ product.url }}">
+  <div class="product-tile__inner">
+    <div class="product-tile__image">
+      <img src="{{ product.featured_image | img_url: '400x400', crop: 'center' }}" />
+    </div>
+    <div class="product-tile__content">
+      <div class="product-tile__title-container">
+        <h4 class="product-tile__title">{{ product.title }}</h4>
+      </div>
+      <div class="product-tile__prices-container">
+        <div class="pdp-tile__prices">
+          <h4 class="product-tile__price price-size">{{ product.price | money }}</h4>
+          {% if product.compare_at_price > product.price %}
+            <p class="product-tile__price"><strike>{{ product.compare_at_price | money }}</strike></p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="product-tile__footer">
+      <div class="product-tile__button">
+        <button class="btn btn--primary">Shop Now</button>
+      </div>
+    </div>
+  </div>
+</a>

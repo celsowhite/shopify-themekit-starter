@@ -1,0 +1,55 @@
+{% paginate blog.articles by 5 %}
+
+  {% comment %} Header {% endcomment %}
+
+  <header class="page-header">
+    <div class="section-header">
+      <h1 class="section-header__title">{{ blog.title }}</h1>
+    </div>
+    {% if current_tags.size > 0 %}
+      <div class="page-header__content">
+        Tag: {{ current_tags }}
+      </div>
+    {% endif %}
+  </header>
+
+  {% comment %} Content {% endcomment %}
+
+  <main class="page-main">
+    <div class="container container--medium">
+      <div class="article-cards">
+        {% for article in blog.articles %}
+          {% comment %} Individual Article Card {% endcomment %}
+          <div class="article-card">
+            {% comment %} Header {% endcomment %}
+            <header class="article-card__header">
+              <h2 class="article-card__title"><a href="{{ article.url }}"> {{ article.title }}</a></h2>
+              <div class="article-card__date">{{ article.published_at | time_tag: format: 'month_day_year' }}</div>
+            </header>
+            {% comment %} Featured Image {% endcomment %}
+            <a href="{{ article.url }}"> 
+              <img class="article-card__featured-image lazyload" src="{{ article.image | img_url: '600x400', crop: 'center' }}" />
+            </a>
+            {% comment %} Excerpt {% endcomment %}
+            <div class="article-card__excerpt wysiwyg">
+              {% if article.excerpt.size > 0 %}
+                {{ article.excerpt }}
+              {% else %}
+                <p>{{ article.content | strip_html | truncatewords: 30 }}</p>
+              {% endif %}
+            </div>
+            {% comment %} Link {% endcomment %}
+            <a href="{{ article.url }}" class="btn btn--primary">Read More</a>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </main>
+
+  {% comment %} Pagination {% endcomment %}
+
+  {% if paginate.pages > 1 %}
+    {% include 'pagination' %}
+  {% endif %}
+
+{% endpaginate %}

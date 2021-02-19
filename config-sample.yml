@@ -1,0 +1,14 @@
+development:
+  password:
+  theme_id: ''
+  store: theme-name.myshopify.com
+  directory: theme
+  ignore_files:
+    - config/settings_data.json
+production:
+  password:
+  theme_id: ''
+  store: theme-name.myshopify.com
+  directory: theme
+  ignore_files:
+    - config/settings_data.json

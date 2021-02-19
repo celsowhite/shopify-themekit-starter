@@ -1,0 +1,67 @@
+<!doctype html>
+<html class="no-js supports-no-cookies" lang="{{ shop.locale }}">
+<head>
+
+  {% comment %} Tracking {% endcomment %}
+
+  {% render 'tracking-head' %}
+
+  {% comment %} Meta {% endcomment %}
+
+  {% render 'meta-general' %}
+  {% render 'meta-social' %}
+
+  {% comment %} Styles {% endcomment %}
+
+  {% render 'font-faces' %}
+  {% render 'css-variables' %}
+  {{ 'main.min.css' | asset_url | stylesheet_tag }}
+
+
+  {% comment %} Scripts {% endcomment %}
+
+  {% render 'theme-global-js' %}
+  {{ 'https://polyfill.io/v3/polyfill.min.js?features=Array.from%2CObject.assign%2CObject.create%2CArray.prototype.find%2CPromise%2CArray.prototype.values%2CArray.prototype.includes%2CString.prototype.includes%2CObject.values%2CElement.prototype.closest%2CIntersectionObserver%2CURL' | script_tag }}
+  {{ 'vendor.min.js' | asset_url | script_tag }}
+  {{ 'main.min.js' | asset_url | script_tag }}
+
+
+  {% comment %} Sturctured Data {% endcomment %}
+
+  {% render 'json-ld-global' %}
+  {% render 'json-ld-homepage' %}
+
+  {% comment %} Body Classes {% endcomment %}
+
+  {%- assign body_classes = '' -%}
+
+  {% capture template_name_class %}template-{{ template.name | handle }}{% endcapture %}
+  {% assign body_classes = body_classes | append: template_name_class | append: ' ' %}
+
+  {% if template.suffix %}
+    {% capture template_suffix_class %}template-{{ template.suffix | handle }}{% endcapture %}
+    {% assign body_classes = body_classes | append: template_suffix_class | append: ' ' %}
+  {% endif %}
+
+  {{ content_for_header }}
+
+</head>
+
+<body id="{{ page_title | handle }}" class="{{ body_classes }}">
+
+  {% section "top-messaging" %}
+  {% section 'header' %}
+
+  <main role="main" id="main">
+    {% if request.path contains '/policies/' %}
+      {% render 'policy-template' %}
+    {% else %}
+      {{ content_for_layout }}
+    {% endif %}
+  </main>
+
+  {% section 'footer' %}
+  {% render 'cookie-consent' %}
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% comment %}
+PDP Slider
+---
+Must be included in a product template.
+{% endcomment %}
+
+<div class="pdp-slider__container">
+  {% comment %} Main Slider {% endcomment %}
+  <div class="pdp-slider flickity">
+    {% for image in product.images %}
+      <div class="pdp-slide">
+        <img src="{{ image.src | img_url: '600x600', crop: 'center' }}" />
+      </div>
+    {% endfor %}
+  </div>
+
+  {% comment %} Thumbnails {% endcomment %}
+  {% if product.images.size > 1 %}
+    <ul class="pdp-slider__thumbnails flickity-dot-nav">
+      {% for image in product.images %}
+        <li class="pdp-slider__thumbnail flickity-dot-nav__item">
+          <img src="{{ image.src | img_url: '300x300', crop: 'center' }}" />
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>

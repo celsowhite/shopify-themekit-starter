@@ -1,0 +1,54 @@
+<header class="page-header">
+  <div class="container">
+    <h1 class="page-header__title">{{ page.title }}</h1>
+  </div>
+</header>
+
+<main class="page-main">
+  <div class="container container--medium wysiwyg">
+    <div class="single-toggle-list">
+      {% for block in section.blocks %}
+        {% if block.type == 'question' %}
+          {% comment %} Single Toggle Markup {% endcomment %}
+          <div class="single-toggle">
+            <header class="single-toggle__header">
+              <h3 class="single-toggle__title">{{ block.settings.title }}</h3>
+              <span class="single-toggle__symbol"></span>
+            </header>
+            <div class="single-toggle__content">
+              <div class="single-toggle__content-inner">
+                {{ block.settings.text }}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</main>
+
+{% schema %}
+  {
+    "name": "FAQ",
+    "settings": [
+    ],
+    "blocks": [
+      {
+        "type": "question",
+        "name": "Question",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
