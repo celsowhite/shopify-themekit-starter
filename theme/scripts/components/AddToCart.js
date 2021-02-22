@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import isEqual from 'lodash/isEqual';
+import * as currency from '@shopify/theme-currency';
 
 /*----------------------------
 Add To Cart - Vue Component
@@ -18,11 +19,17 @@ Vue.component('add-to-cart', {
       addToCartStatus: 'idle',
       feedbackMessage: '',
       quantity: 1,
+      purchaseTypes: ['Single Purchase', 'Subscription'],
+      selectedPurchaseType: 'Subscription',
+      selectedSellingPlan: '',
     };
   },
   mounted: function() {
     // Set Initial Options
     this.setInitialOptions();
+
+    // Set Initial Subscription Data
+    this.setInitialSubscriptionData();
   },
   methods: {
     /*---------------
@@ -96,6 +103,34 @@ Vue.component('add-to-cart', {
     },
 
     /*---------------
+    Set Initial Subscription Data
+    ---------------*/
+    setInitialSubscriptionData() {
+      // If there is a selling plan then set it.
+      if (this.hasSellingPlan) {
+        this.selectedSellingPlan = this.product.selling_plan_groups[0].selling_plans[0];
+      }
+      // Else set the selected purchase type to single.
+      else {
+        this.selectedPurchaseType = 'Single Purchase';
+      }
+    },
+
+    /*---------------
+    Set Purchase Type
+    ---------------*/
+    setPurchaseType(type) {
+      this.selectedPurchaseType = type;
+    },
+
+    /*---------------
+    Set Selling Plan
+    ---------------*/
+    setSellingPlan(plan) {
+      this.selectedSellingPlan = plan;
+    },
+
+    /*---------------
     Add Product To Cart
     ---------------*/
     addProductToCart() {
@@ -123,6 +158,14 @@ Vue.component('add-to-cart', {
           }, 3000);
         });
     },
+
+    /*---------------
+    Format Money
+    ---------------*/
+
+    formatMoney(amount) {
+      return currency.formatMoney(amount);
+    },
   },
   computed: {
     /*---------------
@@ -137,6 +180,14 @@ Vue.component('add-to-cart', {
     },
 
     /*---------------
+    Has Selling Plan
+    ---------------*/
+
+    hasSellingPlan() {
+      return this.product.selling_plan_groups.length > 0;
+    },
+
+    /*---------------
     Product Cart Item
     ---------------*/
 
@@ -145,6 +196,11 @@ Vue.component('add-to-cart', {
         id: this.selectedVariant.id,
         quantity: this.quantity,
       };
+
+      // If there is a selling plan then attach the plan data.
+      if (this.hasSellingPlan) {
+        cartItemData.selling_plan = this.selectedSellingPlan.id;
+      }
 
       return cartItemData;
     },

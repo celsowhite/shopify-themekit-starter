@@ -19,7 +19,6 @@ Vue.component('cart-item', {
     return {
       quantity: this.item.quantity,
       feedbackMessage: '',
-      subscription: {},
       loading: false,
     };
   },
@@ -65,23 +64,9 @@ Vue.component('cart-item', {
     },
   },
   computed: {
-    // Is subscription product
-    isSubscriptionProduct: function() {
-      return this.item.properties && this.item.properties.subscription_id
-        ? true
-        : false;
-    },
-
-    // Product URL
-    productUrl: function() {
-      // If this is a subscription product then return the url of the original (not duplicate) product.
-      if (this.isSubscriptionProduct) {
-        return `/products/${this.item.properties.subscription_original_product}`;
-      }
-      // Else return the url of the actual product.
-      else {
-        return this.item.url;
-      }
+    // Has Selling Plan
+    hasSellingPlan: function() {
+      return this.item.selling_plan_allocation ? true : false;
     },
   },
   watch: {

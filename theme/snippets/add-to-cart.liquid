@@ -11,18 +11,21 @@ inline-template
 :variants='{{ product.variants | json }}'
 :product-has-only-default-variant='{{ product.has_only_default_variant }}'>
   <div>
-    <div class="tablet--hide">
-      {% comment %} Title/Price {% endcomment %}
-      <div class="pdp-details-header">
-        <h2 class="pdp-details-header__title">{{ product.title }}</h2>
-        <h2 class="pdp-details-header__price">{{ product.price | money }}</h2>
+    {% comment %} Title/Price {% endcomment %}
+    <div class="pdp-details-header">
+      <h2 class="pdp-details-header__title">{{ product.title }}</h2>
+      <div v-if="selectedVariant" class="pdp-details-header__price" v-cloak>
+        <h2 v-if="hasSellingPlan && selectedPurchaseType === 'Subscription'">
+          ${ formatMoney(selectedVariant.selling_plan_allocations[0].price) } <strike v-if="selectedVariant && selectedVariant.selling_plan_allocations[0].price < selectedVariant.selling_plan_allocations[0].compare_at_price">${ formatMoney(selectedVariant.selling_plan_allocations[0].compare_at_price) }</strike>
+        </h2>
+        <h2 v-else>${ formatMoney(selectedVariant.price) }</h2>
       </div>
     </div>
 
     {% comment %} Variant Options {% endcomment %}
     <div class="pdp-options" v-if="!productHasOnlyDefaultVariant">
       <div class="pdp-option" v-for="option in options">
-        <p class="pdp-option__title">${ option.name }:</p>
+        <h5 class="pdp-option__title">${ option.name }:</h5>
         <div class="select-dropdown">
           <div class="select-dropdown__header">
             <span class="select-dropdown__title">${ selectedOptions[option.name] }</span>
@@ -36,6 +39,41 @@ inline-template
             ${ value }</li>
           </ul>
         </div>
+      </div>
+    </div>
+
+    {% comment %} Purchase Types {% endcomment %}
+    <ul class="purchase-types" v-if="hasSellingPlan">
+      <li 
+      v-for="type in purchaseTypes"
+      class="purchase-type"
+      :class="{ 'active': selectedPurchaseType === type }"
+      @click="setPurchaseType(type)">
+        <div class="purchase-type__content">
+          <h5 class="purchase-type__title">${ type }</h5>
+          <div v-if="type === 'Subscription' && product.selling_plan_groups[0].selling_plans[0].price_adjustments[0].value > 0" class="purchase-type__subtitle">
+            <p>${ product.selling_plan_groups[0].selling_plans[0].price_adjustments[0].value }% recurring discount</p>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    {% comment %} Subscription Frequency {% endcomment %}
+    <div class="pdp-details-box subscription-frequency-box" v-if="hasSellingPlan && selectedPurchaseType === 'Subscription'">
+      <h5 class="subscription-frequency-box__title">Frequency:</h5>
+      <div class="select-dropdown select-dropdown--orange">
+        <div class="select-dropdown__header">
+          <span class="select-dropdown__title">${ selectedSellingPlan.name }</span>
+          <span class="select-dropdown__icon">{% render 'svg-icon-arrow-down' %}</span>
+        </div>
+        <ul class="select-dropdown__list">
+          <li
+          v-for="plan in product.selling_plan_groups[0].selling_plans"
+          class="select-dropdown__list-item"
+          :class=""
+          @click="setSellingPlan(plan)">
+          ${ plan.name }</li>
+        </ul>
       </div>
     </div>
     
@@ -54,8 +92,8 @@ inline-template
       <div class="add-to-cart-footer__button">
         <a class="btn btn--primary btn--full-width" @click="addProductToCart()">
           <span v-if="addToCartStatus === 'idle'">Add To My Cart</span>
-          <span v-if="addToCartStatus === 'loading'">Adding The Smells ...</span>
-          <span v-if="addToCartStatus === 'done'">Smelling Great</span>
+          <span v-if="addToCartStatus === 'loading'">Adding ...</span>
+          <span v-if="addToCartStatus === 'done'">Added</span>
         </a>
         <div class="add-to-cart__feedback">${ feedbackMessage }</div>
       </div>
