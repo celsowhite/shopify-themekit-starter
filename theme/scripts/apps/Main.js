@@ -11,7 +11,6 @@ Ensures any liquid template with a #main-vue id wrapper can have access to vuex 
 
 document.addEventListener('DOMContentLoaded', () => {
   if (document.querySelector('#main-vue')) {
-    console.log('is main');
     new Vue({
       el: '#main-vue',
       delimiters: ['${', '}'],
@@ -25,9 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
           'removeCartItem',
           'toggleMiniCart',
         ]),
-        formatMoney(price) {
-          return currency.formatMoney(price);
-        },
         resizeShopifyImageUrl(url, size) {
           return resizeShopifyImageUrl(url, size);
         },

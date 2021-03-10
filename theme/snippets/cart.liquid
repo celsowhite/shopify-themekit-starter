@@ -41,8 +41,8 @@ Parts of this component are dynamically rendered using Vue and the global Vuex s
           <div class="cart-item__right">
             <div class="cart-item__price-container">
               <span class="cart-item__price">
-                <span v-if="hasSellingPlan">${ formatMoney(item.price * item.quantity) } <strike v-if="item.selling_plan_allocation.price < item.selling_plan_allocation.compare_at_price">${ formatMoney(item.selling_plan_allocation.compare_at_price * item.quantity) }</strike></span>
-                <span v-else>${ formatMoney(item.price * item.quantity) }</span>
+                <span v-if="hasSellingPlan">${ item.price * item.quantity | money } <strike v-if="item.selling_plan_allocation.price < item.selling_plan_allocation.compare_at_price">${ item.selling_plan_allocation.compare_at_price * item.quantity | money }</strike></span>
+                <span v-else>${ item.price * item.quantity | money }</span>
               </span>
               <span class="loading-icon cart-item__loading-icon"></span>
             </div>
@@ -62,11 +62,11 @@ Parts of this component are dynamically rendered using Vue and the global Vuex s
       </div>
       <div class="cart-calculations__line">
         <p>Subtotal</p>
-        <p>${ formatMoney(cartSubtotal) }</p>
+        <p>${ cartSubtotal | money }</p>
       </div>
       <div class="cart-calculations__line">
         <p>Total</p>
-        <p>${ formatMoney(cartSubtotal) }</p>
+        <p>${ cartSubtotal | money }</p>
       </div>
     </div>
 

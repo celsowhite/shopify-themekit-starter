@@ -16,9 +16,9 @@ inline-template
       <h2 class="pdp-details-header__title">{{ product.title }}</h2>
       <div v-if="selectedVariant" class="pdp-details-header__price" v-cloak>
         <h2 v-if="hasSellingPlan && selectedPurchaseType === 'Subscription'">
-          ${ formatMoney(selectedVariant.selling_plan_allocations[0].price) } <strike v-if="selectedVariant && selectedVariant.selling_plan_allocations[0].price < selectedVariant.selling_plan_allocations[0].compare_at_price">${ formatMoney(selectedVariant.selling_plan_allocations[0].compare_at_price) }</strike>
+          ${ selectedVariant.selling_plan_allocations[0].price | money } <strike v-if="selectedVariant && selectedVariant.selling_plan_allocations[0].price < selectedVariant.selling_plan_allocations[0].compare_at_price">${ selectedVariant.selling_plan_allocations[0].compare_at_price | money }</strike>
         </h2>
-        <h2 v-else>${ formatMoney(selectedVariant.price) }</h2>
+        <h2 v-else>${ selectedVariant.price | money }</h2>
       </div>
     </div>
 

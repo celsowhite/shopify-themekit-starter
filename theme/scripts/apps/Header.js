@@ -18,9 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       methods: {
         ...mapActions('cart', ['hydrateCartItems', 'toggleMiniCart']),
-        formatMoney(price) {
-          return currency.formatMoney(price);
-        },
       },
       computed: {
         ...mapState('cart', {

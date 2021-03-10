@@ -27,7 +27,6 @@ Vue.component('cart-item', {
     ...mapActions('cart', ['removeCartItem', 'changeCartItem']),
 
     // Change Quantity
-
     changeQuantity(newQuantity) {
       this.loading = true;
 
@@ -51,14 +50,7 @@ Vue.component('cart-item', {
         });
     },
 
-    // Format Money
-
-    formatMoney(price) {
-      return currency.formatMoney(price);
-    },
-
     // Resize Shopify Image URL
-
     resizeShopifyImageUrl(url, size) {
       return resizeShopifyImageUrl(url, size);
     },
@@ -79,4 +71,9 @@ Vue.component('cart-item', {
       deep: true,
     },
   },
+  filters: {
+    money(number) {
+      return currency.formatMoney(number);
+    }
+  }
 });

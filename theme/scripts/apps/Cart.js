@@ -22,9 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       methods: {
         ...mapActions('cart', ['hydrateCartItems', 'toggleMiniCart']),
-        formatMoney(price) {
-          return currency.formatMoney(price);
-        },
       },
       computed: {
         ...mapState('cart', {
@@ -32,6 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }),
         ...mapGetters('cart', ['cartSubtotal', 'cartCount']),
       },
+      filters: {
+        money(number) {
+          return currency.formatMoney(number);
+        }
+      }
     });
   }
 });

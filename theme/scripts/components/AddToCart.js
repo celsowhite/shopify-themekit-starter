@@ -158,20 +158,11 @@ Vue.component('add-to-cart', {
           }, 3000);
         });
     },
-
-    /*---------------
-    Format Money
-    ---------------*/
-
-    formatMoney(amount) {
-      return currency.formatMoney(amount);
-    },
   },
   computed: {
     /*---------------
     Selected Variant
     ---------------*/
-
     selectedVariant() {
       // Get the variant that matches our currently selected options.
       return this.variants.find(variant => {
@@ -182,15 +173,18 @@ Vue.component('add-to-cart', {
     /*---------------
     Has Selling Plan
     ---------------*/
-
     hasSellingPlan() {
-      return this.product.selling_plan_groups.length > 0;
+      if(this.product.selling_plan_groups && this.product.selling_plan_groups.length > 0) {
+        return true;
+      }
+      else {
+        return false;
+      }
     },
 
     /*---------------
     Product Cart Item
     ---------------*/
-
     productCartItem() {
       const cartItemData = {
         id: this.selectedVariant.id,
@@ -198,11 +192,16 @@ Vue.component('add-to-cart', {
       };
 
       // If there is a selling plan then attach the plan data.
-      if (this.hasSellingPlan) {
+      if (this.hasSellingPlan && this.selectedPurchaseType === 'Subscription') {
         cartItemData.selling_plan = this.selectedSellingPlan.id;
       }
 
       return cartItemData;
     },
   },
+  filters: {
+    money(number) {
+      return currency.formatMoney(number);
+    }
+  }
 });
