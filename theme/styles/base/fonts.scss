@@ -9,7 +9,7 @@ body {
   color: var(--color-black);
 
   @media all and (max-width: 768px) {
-    font-size: calc(14px + (16 - 14) * ((100vw - 3var(--spacer-s)) / (768 - 320)));
+    font-size: calc(14px + (16 - 14) * ((100vw - 320) / (768 - 320)));
   }
 }
 
