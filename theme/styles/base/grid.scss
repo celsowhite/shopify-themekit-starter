@@ -6,13 +6,13 @@ Grid
   display: flex;
   flex-flow: row wrap;
   width: auto;
-  margin: 0 calc(-1 * var(--grid-item-padding));
+  margin: 0 calc(-1 * var(--spacer-s));
 }
 
 .col {
   position: relative;
   margin: 0px 0px 40px;
-  padding: 0px var(--grid-item-padding);
+  padding: 0px var(--spacer-s);
 
   img {
     display: block;

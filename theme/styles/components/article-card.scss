@@ -13,7 +13,7 @@ Header
 -------------------------------*/
 
 header.article-card__header {
-  margin-bottom: 20px;
+  margin-bottom: var(--spacer-s);
 }
 
 .article-card__title {
@@ -36,7 +36,7 @@ Featured Image
 .article-card__featured-image {
   display: block;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: var(--spacer-s);
 }
 
 /*-------------------------------
@@ -44,5 +44,5 @@ Excerpt
 -------------------------------*/
 
 .article-card__excerpt {
-  margin-bottom: 20px;
+  margin-bottom: var(--spacer-s);
 }

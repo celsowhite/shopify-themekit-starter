@@ -30,7 +30,7 @@ PDP Slider
   @media all and (max-width: 768px) {
     width: 100%;
     padding-right: 0;
-    margin-bottom: 20px;
+    margin-bottom: var(--spacer-s);
   }
 }
 
@@ -105,7 +105,7 @@ PDP Details
   flex-flow: row wrap;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: var(--spacer-s);
 }
 
 .pdp-details-header__title {
@@ -122,7 +122,7 @@ PDP Details
 // Reviews
 
 .pdp-details__review-stars {
-  margin-bottom: 20px;
+  margin-bottom: var(--spacer-s);
 }
 
 // Footer
@@ -136,7 +136,7 @@ Options
 ----------------------------*/
 
 .pdp-option {
-  margin-bottom: 20px;
+  margin-bottom: var(--spacer-s);
 }
 
 // Title
@@ -194,8 +194,8 @@ Subscription Box
 }
 
 .subscription-box__toggle-button {
-  width: 20px;
-  height: 20px;
+  width: var(--spacer-s);
+  height: var(--spacer-s);
   display: block;
   border: 2px solid var(--color-black);
   border-radius: 50%;

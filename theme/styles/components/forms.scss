@@ -50,7 +50,7 @@ Structure
 }
 
 .form__group {
-  margin-bottom: 20px;
+  margin-bottom: var(--spacer-s);
 }
 
 /*-------------------------------
@@ -191,7 +191,7 @@ Labels
 
   @media all and (max-width: 568px) {
     font-size: 12px;
-    line-height: 20px;
+    line-height: var(--spacer-s);
   }
 }
 
@@ -211,7 +211,7 @@ Feedback
 -------------------------------*/
 
 .form__feedback-message {
-  margin: 20px 0;
+  margin: var(--spacer-s) 0;
   font-style: italic;
 }
 
@@ -236,7 +236,7 @@ If have text next to form submit button
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: var(--spacer-s);
 }
 
 .form__footer p {

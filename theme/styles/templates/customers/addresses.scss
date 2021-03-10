@@ -7,8 +7,8 @@ Address Card
 .address-card {
   background: transparent;
   border-bottom: 1px solid var(--color-black);
-  margin-bottom: 20px;
-  padding: 0 0 20px;
+  margin-bottom: var(--spacer-s);
+  padding: 0 0 var(--spacer-s);
 }
 
 .address-card p {
@@ -32,5 +32,5 @@ Address Card
 .address-card__footer {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
+  margin-top: var(--spacer-s);
 }

@@ -24,7 +24,7 @@ Structure
 
 .mobile-nav-overlay__wrapper {
   height: 100%;
-  padding: 20px 0;
+  padding: var(--spacer-s) 0;
   overflow: scroll;
 }
 
@@ -33,7 +33,7 @@ Menu Items - General Styling
 -------------------------------*/
 
 .mobile-nav-menu__item {
-  margin-bottom: 20px;
+  margin-bottom: var(--spacer-s);
 
   &:last-child {
     margin-bottom: 0;

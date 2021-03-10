@@ -96,7 +96,7 @@ ul.main-header__links li {
 }
 
 .main-header__icon svg {
-  height: 20px;
+  height: var(--spacer-s);
   display: block;
   color: var(--color-black);
 }
@@ -109,8 +109,8 @@ ul.main-header__links li {
 
 .cart-icon__count {
   position: absolute;
-  width: 20px;
-  height: 20px;
+  width: var(--spacer-s);
+  height: var(--spacer-s);
   border-radius: 50%;
   font-size: 9px;
   line-height: 1;

@@ -46,7 +46,7 @@ Banner
 
 .notification-banner {
   padding: 10px 10px 6px;
-  margin-bottom: 20px;
+  margin-bottom: var(--spacer-s);
   position: relative;
   color: var(--color-white);
 }

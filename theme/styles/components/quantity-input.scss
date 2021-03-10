@@ -41,7 +41,7 @@ Quantity Input
   padding: 0;
   background: transparent;
   color: inherit;
-  width: 20px;
+  width: var(--spacer-s);
   font-size: 12px;
   line-height: 12px;
 }

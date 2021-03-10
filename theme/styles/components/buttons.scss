@@ -58,10 +58,10 @@ Buttons
 // Wide
 
 .btn--wide {
-  padding: 20px 20px 25px;
+  padding: var(--spacer-s) var(--spacer-s) 25px;
 
   @media all and (min-width: 768px) {
-    padding: 20px 70px 25px;
+    padding: var(--spacer-s) 70px 25px;
   }
 }
 

@@ -3,7 +3,7 @@ Structure
 ----------------------------*/
 
 .table {
-  margin-bottom: 20px;
+  margin-bottom: var(--spacer-s);
   overflow: auto;
   border-left: 1px solid;
   border-right: 1px solid;

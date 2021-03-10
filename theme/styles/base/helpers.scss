@@ -7,6 +7,38 @@ Colors
 // Background
 
 /*-------------------------------
+Margin
+-------------------------------*/
+
+// None
+
+.margin--none {
+  margin: 0;
+}
+
+// Bottom
+
+.margin-bottom--xs {
+  margin-bottom: var(--spacer-xs);
+}
+
+.margin-bottom--s {
+  margin-bottom: var(--spacer-s);
+}
+
+.margin-bottom--m {
+  margin-bottom: var(--spacer-m);
+}
+
+.margin-bottom--l {
+  margin-bottom: var(--spacer-l);
+}
+
+.margin-bottom--xl {
+  margin-bottom: var(--spacer-xl);
+}
+
+/*-------------------------------
 Alignment
 -------------------------------*/
 

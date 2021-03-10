@@ -16,7 +16,7 @@ Wysiwyg List
 .wysiwyg {
   ul,
   ol {
-    margin: 0 0 20px;
+    margin: 0 0 var(--spacer-s);
     padding: 0;
     list-style: disc;
     list-style-position: outside;

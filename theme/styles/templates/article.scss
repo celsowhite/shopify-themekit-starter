@@ -5,7 +5,7 @@ Featured Image
 .article__featured-image {
   display: block;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: var(--spacer-s);
 }
 
 /*-------------------------------
@@ -13,7 +13,7 @@ Content
 -------------------------------*/
 
 .article__content {
-  margin-bottom: 20px;
+  margin-bottom: var(--spacer-s);
 }
 
 // Tags
@@ -27,7 +27,7 @@ Content
 }
 
 .article__tags-header {
-  margin: 0 20px 20px 0;
+  margin: 0 var(--spacer-s) var(--spacer-s) 0;
 }
 
 /*-------------------------------

@@ -34,7 +34,7 @@ Tile
 // Content
 
 .product-tile__content {
-  margin: 0 0 20px;
+  margin: 0 0 var(--spacer-s);
   display: flex;
   justify-content: space-between;
 }

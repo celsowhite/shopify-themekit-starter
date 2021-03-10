@@ -4,8 +4,8 @@ Loading Icon
 
 .loading-icon {
   display: block;
-  width: 20px;
-  height: 20px;
+  width: var(--spacer-s);
+  height: var(--spacer-s);
   border-radius: 50%;
   border: 3px solid var(--color-black);
   border-top-color: rgba(var(--color-black-rgb), 0.5);

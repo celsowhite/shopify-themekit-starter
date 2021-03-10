@@ -5,7 +5,7 @@ Menu Icon
 .menu-icon {
   cursor: pointer;
   width: 25px;
-  height: 20px;
+  height: var(--spacer-s);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

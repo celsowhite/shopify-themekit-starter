@@ -9,7 +9,7 @@ body {
   color: var(--color-black);
 
   @media all and (max-width: 768px) {
-    font-size: calc(14px + (16 - 14) * ((100vw - 320px) / (768 - 320)));
+    font-size: calc(14px + (16 - 14) * ((100vw - 3var(--spacer-s)) / (768 - 320)));
   }
 }
 
@@ -96,7 +96,7 @@ h4,
 h5,
 h6,
 p {
-  margin: 0 0 20px;
+  margin: 0 0 var(--spacer-s);
 }
 
 /*-------------------------------
