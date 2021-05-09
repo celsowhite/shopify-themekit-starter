@@ -34,6 +34,7 @@ import '../components/select-dropdown';
 import '../components/single-toggle';
 import '../components/email-subscribe';
 import '../components/social-share';
+import '../components/sliders';
 
 // Sections
 

@@ -23,7 +23,7 @@ export default function initCustomNavFlickity(
 	Classes
 	--------------------*/
   if (flickity.slides.length === 1) {
-    container.classList.add('no-nav');
+    container.classList.add('is-single-slide');
   }
 
   /*--------------------
@@ -53,21 +53,28 @@ export default function initCustomNavFlickity(
   // Save the dot nav items (can be thumbnails, text, etc)
 
   const dotNavItems = container.querySelectorAll('.flickity-dot-nav__item');
+  const dotNavs = container.querySelectorAll('.flickity-dot-nav');
 
-  if (dotNavItems.length > 0) {
-    // Add the active class to the first dot.
-    dotNavItems[0].classList.add('active');
+  if (dotNavs.length > 0) {
+    [...dotNavs].forEach(nav => {
+      const navItems = nav.querySelectorAll('.flickity-dot-nav__item');
 
-    // Event listener on dot click.
+      if (navItems.length > 0) {
+        // Add the active class to the first dot.
+        navItems[0].classList.add('active');
 
-    [...dotNavItems].forEach((dot, index) => {
-      // Go to the slide
-      dot.addEventListener('click', () => {
-        flickity.select(index);
+        // Event listener on dot click.
 
-        // Pause the slider
-        flickity.stopPlayer();
-      });
+        [...navItems].forEach((dot, index) => {
+          // Go to the slide
+          dot.addEventListener('click', () => {
+            flickity.select(index);
+
+            // Pause the slider
+            flickity.stopPlayer();
+          });
+        });
+      }
     });
   }
 
@@ -83,14 +90,20 @@ export default function initCustomNavFlickity(
 
   flickity.on('select', function(index) {
     // Dot Nav
-    if (dotNavItems.length > 0) {
-      // Remove active class from dots
-      [...dotNavItems].forEach(dot => {
-        dot.classList.remove('active');
+    if (dotNavs.length > 0) {
+      [...dotNavs].forEach(nav => {
+        const navItems = nav.querySelectorAll('.flickity-dot-nav__item');
+
+        if (navItems.length > 0) {
+          // Remove active class from dots
+          [...navItems].forEach(dot => {
+            dot.classList.remove('active');
+          });
+          // Add active class to selected dot
+          const selectedDot = navItems[index];
+          selectedDot.classList.add('active');
+        }
       });
-      // Add active class to selected dot
-      const selectedDot = dotNavItems[index];
-      selectedDot.classList.add('active');
     }
 
     // Count
