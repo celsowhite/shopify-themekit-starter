@@ -146,6 +146,26 @@ Padding
 }
 
 /*-------------------------------
+Stagger Margin
+-------------------------------*/
+
+.stagger-margin--xs > * {
+  margin-bottom: var(--spacer-xs);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.stagger-margin--s > * {
+  margin-bottom: var(--spacer-s);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+/*-------------------------------
 Alignment
 -------------------------------*/
 
