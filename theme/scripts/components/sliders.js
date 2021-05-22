@@ -24,6 +24,12 @@ function initBaseSlider() {
       const fade = baseSliderContainer.dataset.fade
         ? baseSliderContainer.dataset.fade
         : false;
+      const cellAlign = baseSliderContainer.dataset.cellAlign
+        ? baseSliderContainer.dataset.cellAlign
+        : 'left';
+      const wrapAround = baseSliderContainer.dataset.wrapAround
+        ? baseSliderContainer.dataset.wrapAround
+        : false;
 
       // Initialize the slider
       const baseSliderFlickity = initCustomNavFlickity(baseSliderContainer, {
@@ -33,7 +39,8 @@ function initBaseSlider() {
         fade,
         imagesLoaded: true,
         adaptiveHeight: false,
-        cellAlign: 'left',
+        wrapAround,
+        cellAlign,
       });
     });
   }
