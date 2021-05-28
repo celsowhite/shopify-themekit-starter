@@ -3,16 +3,14 @@ Structure
 -------------------------------*/
 
 .top-messaging {
-  background: var(--color-black-lighter);
+  background: var(--color-white);
   line-height: normal;
   overflow: hidden;
   text-align: center;
+  padding: 5px 0;
+  font-size: 0.8em;
 }
 
-.top-messaging__content p {
-  font-size: 12px;
-
-  @media all and (min-width: 768px) {
-    font-size: 16px;
-  }
+.top-messaging p {
+  margin-bottom: 0;
 }
